@@ -55,25 +55,25 @@ export function AdminLayout() {
     return (
         <div className="min-h-screen flex">
             {/* Sidebar */}
-            <aside className={`bg-background-primary text-text-primary flex flex-col fixed h-full z-40 border-r border-border transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-20'
+            <aside className={`bg-white text-text-primary flex flex-col fixed h-full z-40 border-r border-color-border-secondary transition-all duration-200 ${sidebarOpen ? 'w-64' : 'w-20'
                 }`}>
-                <div className={`p-6 border-b border-border flex items-center justify-between ${!sidebarOpen && 'px-4'}`}>
+                <div className={`px-6 py-8 border-b border-color-border-secondary flex items-center justify-between ${!sidebarOpen && 'px-4'}`}>
                     {sidebarOpen && (
                         <div>
-                            <h1 className="text-lg font-bold text-text-primary">{t.appName}</h1>
-                            <p className="text-xs text-text-secondary mt-1">{t.layout.admin.subtitle}</p>
+                            <h1 className="text-lg font-bold text-text-primary leading-tight">{t.appName}</h1>
+                            <p className="text-xs text-text-tertiary mt-2">{t.layout.admin.subtitle}</p>
                         </div>
                     )}
                     <button
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="p-2 hover:bg-background-secondary rounded-lg transition-colors text-text-secondary hover:text-text-primary"
+                        className="p-2 hover:bg-gray-100 rounded-md transition-colors duration-150 text-text-tertiary hover:text-text-primary"
                         aria-label="Toggle sidebar"
                     >
                         {sidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
                     </button>
                 </div>
 
-                <nav className="flex-1 p-4 space-y-2">
+                <nav className="flex-1 px-4 py-6 space-y-1">
                     {navItems.map((item) => {
                         const Icon = item.icon;
                         const active = isActive(item.path);
@@ -84,10 +84,10 @@ export function AdminLayout() {
                                 to={item.path}
                                 title={sidebarOpen ? undefined : item.label}
                                 className={`
-                                    flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-medium
+                                    flex items-center gap-3 px-4 py-3 rounded-md transition-colors duration-150 text-sm font-medium
                                     ${active
-                                        ? 'bg-accent text-white'
-                                        : 'text-text-secondary hover:bg-background-secondary hover:text-text-primary'
+                                        ? 'bg-color-primary-light text-color-primary'
+                                        : 'text-text-secondary hover:bg-gray-50 hover:text-text-primary'
                                     }
                                 `}
                             >
@@ -98,15 +98,15 @@ export function AdminLayout() {
                     })}
                 </nav>
 
-                <div className={`p-4 border-t border-border text-xs text-text-tertiary ${!sidebarOpen && 'text-center'}`}>
+                <div className={`px-4 py-6 border-t border-color-border-secondary text-xs text-text-tertiary ${!sidebarOpen && 'text-center'}`}>
                     {sidebarOpen ? t.common.copyright : '©'}
                 </div>
             </aside>
 
             {/* Main Content */}
-            <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'}`}>
+            <div className={`flex-1 transition-all duration-200 ${sidebarOpen ? 'ml-64' : 'ml-20'}`}>
                 {/* Top Header */}
-                <header className="h-16 bg-background-secondary border-b border-border flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm">
+                <header className="h-16 bg-white border-b border-color-border-secondary flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm">
                     {showSearchBar ? (
                         <div className="flex-1 max-w-xl">
                             <div className="relative">
@@ -117,7 +117,7 @@ export function AdminLayout() {
                                 <Input
                                     type="text"
                                     placeholder={t.header.searchPlaceholder}
-                                    className="pl-10 bg-background-primary border-border text-text-primary placeholder:text-text-tertiary"
+                                    className="pl-10 bg-white border-color-border-secondary text-text-primary placeholder:text-text-tertiary"
                                     aria-label="Search"
                                 />
                             </div>
@@ -130,13 +130,13 @@ export function AdminLayout() {
 
                     <div className="flex items-center gap-4">
                         {/* Language Switcher */}
-                        <div className="flex items-center gap-2 bg-background-primary rounded-lg p-1 border border-border">
+                        <div className="flex items-center gap-1 bg-white rounded-md p-1 border border-color-border-secondary">
                             <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setLanguage('en')}
-                                className={`h-8 px-3 ${language === 'en'
-                                    ? 'bg-accent text-white'
+                                className={`h-8 px-3 text-sm ${language === 'en'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                                     }`}
                             >
@@ -146,8 +146,8 @@ export function AdminLayout() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setLanguage('fr')}
-                                className={`h-8 px-3 ${language === 'fr'
-                                    ? 'bg-accent text-white'
+                                className={`h-8 px-3 text-sm ${language === 'fr'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                                     }`}
                             >
@@ -157,8 +157,8 @@ export function AdminLayout() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setLanguage('ar')}
-                                className={`h-8 px-3 ${language === 'ar'
-                                    ? 'bg-accent text-white'
+                                className={`h-8 px-3 text-sm ${language === 'ar'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                                     }`}
                             >
@@ -167,7 +167,7 @@ export function AdminLayout() {
                         </div>
 
                         {/* Notifications */}
-                        <button className="p-2 hover:bg-background-primary rounded-lg transition-colors text-text-secondary hover:text-text-primary" aria-label="Notifications">
+                        <button className="p-2 hover:bg-gray-50 rounded-md transition-colors duration-150 text-text-secondary hover:text-text-primary" aria-label="Notifications">
                             <Bell size={20} />
                         </button>
 
@@ -178,22 +178,22 @@ export function AdminLayout() {
 
                 {/* Breadcrumbs */}
                 {breadcrumbs.length > 0 && (
-                    <nav className="h-12 bg-background-primary border-b border-border flex items-center px-8">
-                        <ol className="flex items-center gap-2 text-sm">
+                    <nav className="h-14 bg-white border-b border-color-border-secondary flex items-center px-8">
+                        <ol className="flex items-center gap-3 text-sm">
                             <li>
-                                <Link to="/admin" className="text-text-secondary hover:text-accent transition-colors flex items-center gap-2">
+                                <Link to="/admin" className="text-text-secondary hover:text-color-primary transition-colors duration-150 flex items-center gap-2 font-medium">
                                     <LayoutDashboard size={16} />
                                     <span>{t.appName}</span>
                                 </Link>
                             </li>
                             {breadcrumbs.map((crumb) => (
-                                <li key={crumb.href} className="flex items-center gap-2">
-                                    <span className="text-text-tertiary">/</span>
+                                <li key={crumb.href} className="flex items-center gap-3">
+                                    <span className="text-text-quaternary">/</span>
                                     <Link
                                         to={crumb.href}
-                                        className={`transition-colors ${crumb.href === location.pathname
+                                        className={`transition-colors duration-150 ${crumb.href === location.pathname
                                             ? 'text-text-primary font-medium'
-                                            : 'text-text-secondary hover:text-accent'
+                                            : 'text-text-secondary hover:text-color-primary'
                                             }`}
                                     >
                                         {crumb.label}
@@ -205,7 +205,7 @@ export function AdminLayout() {
                 )}
 
                 {/* Page Content */}
-                <main className="p-8">
+                <main className="p-8 bg-color-bg-subtle min-h-[calc(100vh-128px)]">
                     <Outlet />
                 </main>
             </div>

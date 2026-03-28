@@ -130,18 +130,18 @@ export function AccountantLayout() {
             )}
 
             {/* Sidebar */}
-            <aside className={`bg-background-primary text-text-primary flex flex-col fixed h-full z-40 border-r border-border transition-all duration-300 overflow-y-auto ${sidebarOpen ? (isMobile ? 'w-64' : 'w-64') : (isMobile ? '-translate-x-full' : 'w-20')
+            <aside className={`bg-white text-text-primary flex flex-col fixed h-full z-40 border-r border-color-border-secondary transition-all duration-200 overflow-y-auto ${sidebarOpen ? (isMobile ? 'w-64' : 'w-64') : (isMobile ? '-translate-x-full' : 'w-20')
                 }`}>
-                <div className={`p-6 border-b border-border flex items-center justify-between ${!sidebarOpen && 'px-4'}`}>
+                <div className={`px-6 py-8 border-b border-color-border-secondary flex items-center justify-between ${!sidebarOpen && 'px-4'}`}>
                     {sidebarOpen && (
                         <div>
-                            <h1 className="text-lg font-bold text-text-primary">{t.appName}</h1>
-                            <p className="text-xs text-text-secondary mt-1">{t.layout.accountant.workspace}</p>
+                            <h1 className="text-lg font-bold text-text-primary leading-tight">{t.appName}</h1>
+                            <p className="text-xs text-text-tertiary mt-2">{t.layout.accountant.workspace}</p>
                         </div>
                     )}
                     <button
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="p-2 hover:bg-background-secondary rounded-lg transition-colors text-text-secondary hover:text-text-primary"
+                        className="p-2 hover:bg-gray-100 rounded-md transition-colors duration-150 text-text-tertiary hover:text-text-primary"
                         aria-label="Toggle sidebar"
                     >
                         {sidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
@@ -150,24 +150,24 @@ export function AccountantLayout() {
 
                 {/* Client Selector */}
                 {clients.length > 0 && sidebarOpen && (
-                    <div className="p-4 border-b border-border">
+                    <div className="px-4 py-6 border-b border-color-border-secondary">
                         <div className="relative">
                             <button
                                 onClick={() => setIsClientDropdownOpen(!isClientDropdownOpen)}
-                                className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-background-secondary hover:bg-background-secondary/80 transition-colors text-sm text-left"
+                                className="w-full flex items-center justify-between px-4 py-3 rounded-md bg-color-bg-secondary hover:bg-gray-100 transition-colors duration-150 text-sm text-left font-medium"
                             >
-                                <span className="truncate text-text-primary font-medium">
+                                <span className="truncate text-text-primary">
                                     {currentClient?.companyName || t.layout.accountant.selectClient}
                                 </span>
                                 <ChevronDown
                                     size={16}
-                                    className={`flex-shrink-0 transition-transform ${isClientDropdownOpen ? 'rotate-180' : ''
+                                    className={`flex-shrink-0 transition-transform duration-150 text-text-tertiary ${isClientDropdownOpen ? 'rotate-180' : ''
                                         }`}
                                 />
                             </button>
 
                             {isClientDropdownOpen && (
-                                <div className="absolute top-full left-4 right-4 mt-1 bg-background-secondary border border-border rounded-lg shadow-lg z-20">
+                                <div className="absolute top-full left-4 right-4 mt-2 bg-white border border-color-border-secondary rounded-md shadow-md z-20">
                                     {clients.map((client) => (
                                         <button
                                             key={client.id}
@@ -175,8 +175,8 @@ export function AccountantLayout() {
                                                 setCurrentClient(client);
                                                 setIsClientDropdownOpen(false);
                                             }}
-                                            className={`w-full px-3 py-2 text-sm text-left hover:bg-background-tertiary transition-colors first:rounded-t-lg last:rounded-b-lg ${currentClient?.id === client.id
-                                                ? 'bg-accent text-white'
+                                            className={`w-full px-4 py-3 text-sm text-left hover:bg-gray-50 transition-colors duration-150 first:rounded-t-md last:rounded-b-md ${currentClient?.id === client.id
+                                                ? 'bg-color-success-light text-color-success font-medium'
                                                 : 'text-text-primary'
                                                 }`}
                                         >
@@ -189,7 +189,7 @@ export function AccountantLayout() {
                     </div>
                 )}
 
-                <nav className="flex-1 p-4 space-y-2">
+                <nav className="flex-1 px-4 py-6 space-y-1">
                     {navItems.map((item) => {
                         const Icon = item.icon;
                         const active = isActive(item.path);
@@ -200,10 +200,10 @@ export function AccountantLayout() {
                                 to={item.path}
                                 title={sidebarOpen ? undefined : item.label}
                                 className={`
-                                    flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-medium
+                                    flex items-center gap-3 px-4 py-3 rounded-md transition-colors duration-150 text-sm font-medium
                                     ${active
-                                        ? 'bg-accent text-white'
-                                        : 'text-text-secondary hover:bg-background-secondary hover:text-text-primary'
+                                        ? 'bg-color-primary-light text-color-primary'
+                                        : 'text-text-secondary hover:bg-gray-50 hover:text-text-primary'
                                     }
                                 `}
                             >
@@ -215,12 +215,12 @@ export function AccountantLayout() {
                 </nav>
 
                 {sidebarOpen && (
-                    <div className="p-4 border-t border-border relative">
+                    <div className="px-4 py-6 border-t border-color-border-secondary relative">
                         <button
                             onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                            className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-secondary transition-colors text-left"
+                            className="w-full flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors duration-150 text-left"
                         >
-                            <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
+                            <div className="w-9 h-9 rounded-full bg-color-primary flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
                                 {user?.name.charAt(0).toUpperCase()}
                             </div>
                             <div className="min-w-0">
@@ -231,12 +231,12 @@ export function AccountantLayout() {
 
                         {/* User Menu Dropdown */}
                         {isUserMenuOpen && (
-                            <div className="absolute bottom-full left-4 right-4 mb-2 bg-background-secondary border border-border rounded-lg shadow-lg z-20">
+                            <div className="absolute bottom-full left-4 right-4 mb-2 bg-white border border-color-border-secondary rounded-md shadow-md z-20">
                                 <button
                                     onClick={() => {
                                         setIsUserMenuOpen(false);
                                     }}
-                                    className="w-full flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-background-primary transition-colors text-sm first:rounded-t-lg"
+                                    className="w-full flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-gray-50 transition-colors duration-150 text-sm first:rounded-t-md"
                                 >
                                     <Settings size={16} />
                                     <span>Settings</span>
@@ -246,7 +246,7 @@ export function AccountantLayout() {
                                         logout();
                                         setIsUserMenuOpen(false);
                                     }}
-                                    className="w-full flex items-center gap-3 px-4 py-2 text-error hover:bg-error-bg transition-colors text-sm last:rounded-b-lg"
+                                    className="w-full flex items-center gap-3 px-4 py-3 text-color-error hover:bg-color-error-bg transition-colors duration-150 text-sm last:rounded-b-md"
                                 >
                                     <LogOut size={16} />
                                     <span>Log Out</span>
@@ -258,14 +258,14 @@ export function AccountantLayout() {
             </aside>
 
             {/* Main Content */}
-            <div className={`flex-1 transition-all duration-300 ${!isMobile && (sidebarOpen ? 'ml-64' : 'ml-20')}`}>
+            <div className={`flex-1 transition-all duration-200 ${!isMobile && (sidebarOpen ? 'ml-64' : 'ml-20')}`}>
                 {/* Top Header */}
-                <header className="h-16 bg-background-secondary border-b border-border flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm">
+                <header className="h-16 bg-white border-b border-color-border-secondary flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm">
                     <div className="flex items-center gap-4 flex-1">
                         {isMobile && (
                             <button
                                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                                className="p-2 hover:bg-background-primary rounded-lg transition-colors text-text-secondary hover:text-text-primary"
+                                className="p-2 hover:bg-gray-50 rounded-md transition-colors duration-150 text-text-secondary hover:text-text-primary"
                                 aria-label="Toggle sidebar"
                             >
                                 {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
@@ -281,7 +281,7 @@ export function AccountantLayout() {
                                     <Input
                                         type="text"
                                         placeholder={t.header.searchPlaceholder}
-                                        className="pl-10 bg-background-primary border-border text-text-primary placeholder:text-text-tertiary"
+                                        className="pl-10 bg-white border-color-border-secondary text-text-primary placeholder:text-text-tertiary"
                                         aria-label="Search"
                                     />
                                 </div>
@@ -295,13 +295,13 @@ export function AccountantLayout() {
 
                     <div className="flex items-center gap-4">
                         {/* Language Switcher */}
-                        <div className="flex items-center gap-2 bg-background-primary rounded-lg p-1 border border-border">
+                        <div className="flex items-center gap-1 bg-white rounded-md p-1 border border-color-border-secondary">
                             <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setLanguage('en')}
-                                className={`h-8 px-3 ${language === 'en'
-                                    ? 'bg-accent text-white'
+                                className={`h-8 px-3 text-sm ${language === 'en'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                                     }`}
                             >
@@ -311,8 +311,8 @@ export function AccountantLayout() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setLanguage('fr')}
-                                className={`h-8 px-3 ${language === 'fr'
-                                    ? 'bg-accent text-white'
+                                className={`h-8 px-3 text-sm ${language === 'fr'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                                     }`}
                             >
@@ -322,8 +322,8 @@ export function AccountantLayout() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setLanguage('ar')}
-                                className={`h-8 px-3 ${language === 'ar'
-                                    ? 'bg-accent text-white'
+                                className={`h-8 px-3 text-sm ${language === 'ar'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                                     }`}
                             >
@@ -332,7 +332,7 @@ export function AccountantLayout() {
                         </div>
 
                         {/* Notifications */}
-                        <button className="p-2 hover:bg-background-primary rounded-lg transition-colors text-text-secondary hover:text-text-primary" aria-label="Notifications">
+                        <button className="p-2 hover:bg-gray-50 rounded-md transition-colors duration-150 text-text-secondary hover:text-text-primary" aria-label="Notifications">
                             <Bell size={20} />
                         </button>
 
@@ -343,22 +343,22 @@ export function AccountantLayout() {
 
                 {/* Breadcrumbs */}
                 {breadcrumbs.length > 0 && (
-                    <nav className="h-12 bg-background-primary border-b border-border flex items-center px-8">
-                        <ol className="flex items-center gap-2 text-sm">
+                    <nav className="h-14 bg-white border-b border-color-border-secondary flex items-center px-8">
+                        <ol className="flex items-center gap-3 text-sm">
                             <li>
-                                <Link to="/accountant" className="text-text-secondary hover:text-accent transition-colors flex items-center gap-2">
+                                <Link to="/accountant" className="text-text-secondary hover:text-color-primary transition-colors duration-150 flex items-center gap-2 font-medium">
                                     <LayoutDashboard size={16} />
                                     <span>{t.appName}</span>
                                 </Link>
                             </li>
                             {breadcrumbs.map((crumb) => (
-                                <li key={crumb.href} className="flex items-center gap-2">
-                                    <span className="text-text-tertiary">/</span>
+                                <li key={crumb.href} className="flex items-center gap-3">
+                                    <span className="text-text-quaternary">/</span>
                                     <Link
                                         to={crumb.href}
-                                        className={`transition-colors ${crumb.href === location.pathname
+                                        className={`transition-colors duration-150 ${crumb.href === location.pathname
                                             ? 'text-text-primary font-medium'
-                                            : 'text-text-secondary hover:text-accent'
+                                            : 'text-text-secondary hover:text-color-primary'
                                             }`}
                                     >
                                         {crumb.label}
@@ -370,7 +370,7 @@ export function AccountantLayout() {
                 )}
 
                 {/* Page Content */}
-                <main className="p-8">
+                <main className="p-8 bg-color-bg-subtle min-h-[calc(100vh-128px)]">
                     <Outlet />
                 </main>
             </div>

@@ -72,142 +72,142 @@ small {
 
 /* ========== LINKS ========== */
 a {
-  color: var(--primary);
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-underline-offset: 0.5rem;
-  transition: color 150ms;
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 0.5rem;
+    transition: color 150ms;
 }
 
 a:hover {
-  opacity: 0.8;
-  text-decoration-style: solid;
+    opacity: 0.8;
+    text-decoration-style: solid;
 }
 
 /* ========== BUTTONS - Soft, Spacious ========== */
 button,
 [role="button"] {
-  border-radius: var(--radius-md);
-  font-weight: var(--font-weight-medium);
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 }
 
 button:focus-visible,
 [role="button"]:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
 }
 
 /* ========== FORM ELEMENTS - Generous Spacing ========== */
 input,
 textarea,
 select {
-  width: 100%;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--input-border);
-  background-color: var(--input-background);
-  color: var(--text-primary);
-  padding: var(--spacing-3) var(--spacing-4);
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--input-border);
+    background-color: var(--input-background);
+    color: var(--text-primary);
+    padding: var(--spacing-3) var(--spacing-4);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input::placeholder,
 textarea::placeholder,
 select::placeholder {
-  color: var(--text-tertiary);
+    color: var(--text-tertiary);
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  outline: none;
-  border-color: transparent;
-  box-shadow: 0 0 0 3px var(--primary-light), 0 0 0 1px var(--primary);
+    outline: none;
+    border-color: transparent;
+    box-shadow: 0 0 0 3px var(--primary-light), 0 0 0 1px var(--primary);
 }
 
 input:disabled,
 textarea:disabled,
 select:disabled {
-  cursor: not-allowed;
-  background-color: var(--background-secondary);
-  opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--background-secondary);
+    opacity: 0.5;
 }
 
 /* ========== CODE ========== */
 code {
-  border-radius: var(--radius-md);
-  background-color: var(--background-secondary);
-  padding: 0.25rem 0.5rem;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-sm);
-  color: var(--text-primary);
+    border-radius: var(--radius-md);
+    background-color: var(--background-secondary);
+    padding: 0.25rem 0.5rem;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
 }
 
 pre {
-  border-radius: var(--radius-lg);
-  background-color: var(--background-secondary);
-  padding: var(--spacing-4);
-  overflow-x: auto;
+    border-radius: var(--radius-lg);
+    background-color: var(--background-secondary);
+    padding: var(--spacing-4);
+    overflow-x: auto;
 }
 
 pre code {
-  background-color: transparent;
-  padding: 0;
+    background-color: transparent;
+    padding: 0;
 }
 
 /* ========== LISTS ========== */
 ul,
 ol {
-  margin-left: var(--spacing-6);
+    margin-left: var(--spacing-6);
 }
 
 li {
-  margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
 }
 
 /* ========== TABLES ========== */
 table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 th {
-  background-color: var(--background-secondary);
-  padding: var(--spacing-3) var(--spacing-4);
-  text-align: left;
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--color-border-secondary);
+    background-color: var(--background-secondary);
+    padding: var(--spacing-3) var(--spacing-4);
+    text-align: left;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--color-border-secondary);
 }
 
 td {
-  padding: var(--spacing-3) var(--spacing-4);
-  border-bottom: 1px solid var(--color-border-secondary);
+    padding: var(--spacing-3) var(--spacing-4);
+    border-bottom: 1px solid var(--color-border-secondary);
 }
 
 tbody tr:hover {
-  background-color: var(--background-tertiary);
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--background-tertiary);
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ========== CARDS - Soft Shadows & Generous Spacing ========== */
 [data-card],
 .card {
-  border-radius: var(--radius-lg);
-  background-color: var(--card);
-  padding: var(--spacing-6);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border-secondary);
-  transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-lg);
+    background-color: var(--card);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border-secondary);
+    transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-card]:hover,
 .card:hover {
-  box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md);
 }
 
 /* ========== UTILITIES ========== */
@@ -233,28 +233,28 @@ tbody tr:hover {
 
 /* ========== FOCUS RING OUTLINES ========== */
 .focus-ring {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
 }
 
 .focus-ring-internal {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--primary-light);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-light);
 }
 
 /* ========== DARK MODE ADJUSTMENTS ========== */
 .dark input,
 .dark textarea,
 .dark select {
-  background-color: var(--background-secondary);
-  border-color: var(--border);
+    background-color: var(--background-secondary);
+    border-color: var(--border);
 }
 
 .dark button,
 .dark [role="button"] {
-  /* Dark mode support */
+    /* Dark mode support */
 }
 
 .dark code {
-  background-color: var(--background-tertiary);
+    background-color: var(--background-tertiary);
 }
