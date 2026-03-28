@@ -98,28 +98,28 @@ export function AccountantClientsPage() {
             />
 
             {/* Search, Filters and View Toggle */}
-            <div className="mb-6 space-y-4">
+            <div className="mb-8 space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="relative max-w-md flex-1">
                         <Search
-                            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                            className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary"
                             size={18}
                         />
                         <Input
                             placeholder={t.accountantClients.searchPlaceholder}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="pl-10"
+                            className="pl-12 text-base"
                         />
                     </div>
 
                     {/* View Toggle */}
-                    <div className="flex items-center gap-2 bg-background-primary rounded-lg p-1 border border-border">
+                    <div className="flex items-center gap-1 bg-white rounded-md p-1 border border-color-border-secondary">
                         <button
                             onClick={() => setViewMode('grid')}
-                            className={`p-2 rounded transition-colors ${
+                            className={`p-2 rounded transition-colors duration-150 ${
                                 viewMode === 'grid'
-                                    ? 'bg-accent text-white'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                             }`}
                             aria-label="Grid view"
@@ -129,9 +129,9 @@ export function AccountantClientsPage() {
                         </button>
                         <button
                             onClick={() => setViewMode('list')}
-                            className={`p-2 rounded transition-colors ${
+                            className={`p-2 rounded transition-colors duration-150 ${
                                 viewMode === 'list'
-                                    ? 'bg-accent text-white'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                             }`}
                             aria-label="List view"
@@ -141,9 +141,9 @@ export function AccountantClientsPage() {
                         </button>
                         <button
                             onClick={() => setViewMode('table')}
-                            className={`p-2 rounded transition-colors ${
+                            className={`p-2 rounded transition-colors duration-150 ${
                                 viewMode === 'table'
-                                    ? 'bg-accent text-white'
+                                    ? 'bg-color-primary text-white'
                                     : 'text-text-secondary hover:text-text-primary'
                             }`}
                             aria-label="Table view"
@@ -160,7 +160,7 @@ export function AccountantClientsPage() {
                         <select
                             value={filterActivity}
                             onChange={(e) => setFilterActivity(e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg bg-white text-text-primary text-sm"
+                            className="w-full px-4 py-3 border border-color-border-secondary rounded-md bg-white text-text-primary text-base font-medium hover:border-color-border-primary transition-colors duration-150"
                         >
                             <option value="">All Activities</option>
                             {uniqueActivities.map((activity) => (
@@ -175,7 +175,7 @@ export function AccountantClientsPage() {
                         <select
                             value={filterCity}
                             onChange={(e) => setFilterCity(e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg bg-white text-text-primary text-sm"
+                            className="w-full px-4 py-3 border border-color-border-secondary rounded-md bg-white text-text-primary text-base font-medium hover:border-color-border-primary transition-colors duration-150"
                         >
                             <option value="">All Cities</option>
                             {uniqueCities.map((city) => (
@@ -192,7 +192,7 @@ export function AccountantClientsPage() {
                                 setFilterActivity('');
                                 setFilterCity('');
                             }}
-                            className="px-3 py-2 text-sm border border-border rounded-lg hover:bg-background-secondary transition-colors flex items-center gap-2"
+                            className="px-4 py-3 text-base font-medium border border-color-border-secondary rounded-md hover:bg-color-bg-subtle transition-colors duration-150 flex items-center gap-2"
                         >
                             <X size={16} />
                             Clear Filters
@@ -203,7 +203,7 @@ export function AccountantClientsPage() {
 
             {/* Clients Grid View */}
             {viewMode === 'grid' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredClients.map((client, idx) => (
                         <motion.div
                             key={client.id}
@@ -211,51 +211,51 @@ export function AccountantClientsPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.05 }}
                         >
-                            <Card className="h-full border border-gray-200 hover:shadow-lg hover:border-indigo-200 transition-all group cursor-pointer"
+                            <Card className="h-full border border-color-border-secondary hover:shadow-lg hover:border-color-border-primary transition-all duration-200 group cursor-pointer"
                                 onClick={() => {
                                     setCurrentClient(client);
                                     navigate(`/accountant/clients/${client.id}/invoices`);
                                 }}
                             >
-                                <div className="p-6 h-full flex flex-col">
+                                <div className="p-8 h-full flex flex-col">
                                     {/* Header */}
-                                    <div className="mb-4 pb-4 border-b border-gray-100">
-                                        <div className="flex items-start justify-between mb-2">
+                                    <div className="mb-6 pb-6 border-b border-color-border-secondary">
+                                        <div className="flex items-start justify-between mb-3">
                                             <div>
-                                                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
+                                                <h3 className="text-xl font-bold text-text-primary group-hover:text-color-primary transition-colors duration-150">
                                                     {client.companyName}
                                                 </h3>
-                                                <p className="text-sm text-gray-600 mt-1">
+                                                <p className="text-base text-text-secondary mt-2">
                                                     {client.activity}
                                                 </p>
                                             </div>
-                                            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
+                                            <span className="px-3 py-1 bg-color-success-light text-color-success text-xs font-semibold rounded-md">
                                                 {t.accountantClients.activeBadge}
                                             </span>
                                         </div>
                                     </div>
 
                                     {/* Details */}
-                                    <div className="flex-1 space-y-3 my-4 text-sm">
-                                        <div className="flex items-center gap-2 text-gray-600">
-                                            <span className="font-mono text-xs bg-gray-100 px-2 py-1 rounded">
+                                    <div className="flex-1 space-y-4 my-6 text-base">
+                                        <div className="flex items-center gap-3 text-text-secondary">
+                                            <span className="font-mono text-sm bg-color-bg-secondary px-3 py-1.5 rounded-md border border-color-border-secondary">
                                                 {client.ICE}
                                             </span>
-                                            <span className="text-gray-500">ICE</span>
+                                            <span className="text-text-tertiary">ICE</span>
                                         </div>
 
-                                        <div className="flex items-center gap-2 text-gray-600">
-                                            <MapPin size={16} />
+                                        <div className="flex items-center gap-3 text-text-secondary">
+                                            <MapPin size={18} className="flex-shrink-0" />
                                             {client.city}
                                         </div>
 
-                                        <div className="flex items-center gap-2 text-gray-600">
-                                            <Mail size={16} />
-                                            <span className="truncate text-xs">{client.contactEmail}</span>
+                                        <div className="flex items-center gap-3 text-text-secondary">
+                                            <Mail size={18} className="flex-shrink-0" />
+                                            <span className="truncate text-sm">{client.contactEmail}</span>
                                         </div>
 
-                                        <div className="flex items-center gap-2 text-gray-600">
-                                            <Phone size={16} />
+                                        <div className="flex items-center gap-3 text-text-secondary">
+                                            <Phone size={18} className="flex-shrink-0" />
                                             {client.phone}
                                         </div>
                                     </div>
@@ -267,12 +267,12 @@ export function AccountantClientsPage() {
                                             setCurrentClient(client);
                                             navigate(`/accountant/clients/${client.id}/invoices`);
                                         }}
-                                        className="w-full mt-4 gap-2 group/btn"
+                                        className="w-full mt-6 gap-2 group/btn font-medium"
                                     >
                                         {t.common.actions.openWorkspace}
                                         <ArrowRight
-                                            size={16}
-                                            className="group-hover/btn:translate-x-1 transition-transform"
+                                            size={18}
+                                            className="group-hover/btn:translate-x-1 transition-transform duration-150"
                                         />
                                     </Button>
                                 </div>
