@@ -95,6 +95,8 @@ export function Layout() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setLanguage('en')}
+                aria-label="Switch to English"
+                aria-pressed={language === 'en'}
                 className={`h-8 px-3 ${language === 'en'
                     ? 'bg-white text-[#0F172A] shadow-sm'
                     : 'text-[#64748B] hover:text-[#0F172A]'
@@ -106,6 +108,8 @@ export function Layout() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setLanguage('fr')}
+                aria-label="Switch to French"
+                aria-pressed={language === 'fr'}
                 className={`h-8 px-3 ${language === 'fr'
                     ? 'bg-white text-[#0F172A] shadow-sm'
                     : 'text-[#64748B] hover:text-[#0F172A]'
@@ -115,7 +119,11 @@ export function Layout() {
               </Button>
             </div>
 
-            <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
+            <button 
+              className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label="View notifications"
+              title="Notifications"
+            >
               <Bell size={20} className="text-[#64748B]" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-[#10B981] rounded-full"></span>
             </button>

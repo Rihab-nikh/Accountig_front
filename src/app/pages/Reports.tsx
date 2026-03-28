@@ -40,22 +40,22 @@ export function Reports() {
         <h2 className="text-lg font-semibold text-[#0F172A] mb-4">{t.reports.export.title}</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Button className="bg-[#10B981] hover:bg-[#059669] text-white h-auto py-4 flex-col gap-2">
+          <Button className="bg-sky-600 hover:bg-sky-700 text-white h-auto py-4 flex-col gap-2" aria-label="Export to Excel">
             <FileSpreadsheet size={24} />
             <span>{t.reports.export.excel}</span>
           </Button>
           
-          <Button className="bg-[#EF4444] hover:bg-[#DC2626] text-white h-auto py-4 flex-col gap-2">
+          <Button className="bg-red-600 hover:bg-red-700 text-white h-auto py-4 flex-col gap-2" aria-label="Export to PDF">
             <FileText size={24} />
             <span>{t.reports.export.pdf}</span>
           </Button>
           
-          <Button className="bg-[#3B82F6] hover:bg-[#2563EB] text-white h-auto py-4 flex-col gap-2">
+          <Button className="bg-sky-600 hover:bg-sky-700 text-white h-auto py-4 flex-col gap-2" aria-label="Export to Sage software">
             <Cloud size={24} />
             <span>{t.reports.export.sage}</span>
           </Button>
           
-          <Button className="bg-[#8B5CF6] hover:bg-[#7C3AED] text-white h-auto py-4 flex-col gap-2">
+          <Button className="bg-sky-600 hover:bg-sky-700 text-white h-auto py-4 flex-col gap-2" aria-label="Export to QuickBooks">
             <Cloud size={24} />
             <span>{t.reports.export.quickbooks}</span>
           </Button>
@@ -151,13 +151,13 @@ export function Reports() {
                 
                 return (
                   <tr key={item.category} className="hover:bg-[#F8FAFC] transition-colors">
-                    <td className="px-6 py-4">
-                      <span className="font-medium text-[#0F172A]">{item.category}</span>
+                    <td className="px-6 py-5">
+                      <span className="font-medium text-[#0F172A] text-base">{item.category}</span>
                     </td>
-                    <td className="px-6 py-4 text-right text-[#64748B]">
+                    <td className="px-6 py-5 text-right text-[#64748B]">
                       {item.collected.toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-6 py-5 text-right">
                       <span className="font-semibold text-[#10B981]">
                         {item.recoverable.toLocaleString()}
                       </span>
