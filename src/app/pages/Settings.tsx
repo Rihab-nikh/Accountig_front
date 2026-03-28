@@ -103,7 +103,7 @@ export function Settings() {
       [key]: !prev[key],
     }));
   };
-  
+
   return (
     <div className="space-y-6 max-w-4xl">
       {/* Page Header */}
@@ -115,21 +115,21 @@ export function Settings() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3 bg-background-secondary border border-border rounded-lg p-1">
-          <TabsTrigger 
+          <TabsTrigger
             value="profile"
             className="data-[state=active]:bg-accent data-[state=active]:text-white data-[state=inactive]:text-text-secondary rounded-md transition-colors"
           >
             <User size={16} className="mr-2" />
             Profile
           </TabsTrigger>
-          <TabsTrigger 
+          <TabsTrigger
             value="company"
             className="data-[state=active]:bg-accent data-[state=active]:text-white data-[state=inactive]:text-text-secondary rounded-md transition-colors"
           >
             <Building2 size={16} className="mr-2" />
             Company
           </TabsTrigger>
-          <TabsTrigger 
+          <TabsTrigger
             value="notifications"
             className="data-[state=active]:bg-accent data-[state=active]:text-white data-[state=inactive]:text-text-secondary rounded-md transition-colors"
           >
@@ -170,9 +170,8 @@ export function Settings() {
                       required: 'First name is required',
                       minLength: { value: 2, message: 'First name must be at least 2 characters' },
                     })}
-                    className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${
-                      errorsProfile.firstName ? 'border-error' : ''
-                    }`}
+                    className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${errorsProfile.firstName ? 'border-error' : ''
+                      }`}
                   />
                   {errorsProfile.firstName && (
                     <p className="text-sm text-error font-medium">{errorsProfile.firstName.message}</p>
@@ -189,9 +188,8 @@ export function Settings() {
                       required: 'Last name is required',
                       minLength: { value: 2, message: 'Last name must be at least 2 characters' },
                     })}
-                    className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${
-                      errorsProfile.lastName ? 'border-error' : ''
-                    }`}
+                    className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${errorsProfile.lastName ? 'border-error' : ''
+                      }`}
                   />
                   {errorsProfile.lastName && (
                     <p className="text-sm text-error font-medium">{errorsProfile.lastName.message}</p>
@@ -213,9 +211,8 @@ export function Settings() {
                       message: 'Please enter a valid email address',
                     },
                   })}
-                  className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${
-                    errorsProfile.email ? 'border-error' : ''
-                  }`}
+                  className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${errorsProfile.email ? 'border-error' : ''
+                    }`}
                 />
                 {errorsProfile.email && (
                   <p className="text-sm text-error font-medium">{errorsProfile.email.message}</p>
@@ -232,9 +229,8 @@ export function Settings() {
                     required: 'Phone number is required',
                     minLength: { value: 10, message: 'Please enter a valid phone number' },
                   })}
-                  className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${
-                    errorsProfile.phone ? 'border-error' : ''
-                  }`}
+                  className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${errorsProfile.phone ? 'border-error' : ''
+                    }`}
                 />
                 {errorsProfile.phone && (
                   <p className="text-sm text-error font-medium">{errorsProfile.phone.message}</p>
@@ -291,9 +287,8 @@ export function Settings() {
                     required: 'Company name is required',
                     minLength: { value: 3, message: 'Company name must be at least 3 characters' },
                   })}
-                  className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${
-                    errorsCompany.companyName ? 'border-error' : ''
-                  }`}
+                  className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${errorsCompany.companyName ? 'border-error' : ''
+                    }`}
                 />
                 {errorsCompany.companyName && (
                   <p className="text-sm text-error font-medium">{errorsCompany.companyName.message}</p>
@@ -313,9 +308,8 @@ export function Settings() {
                       message: 'ICE number must be 15 digits',
                     },
                   })}
-                  className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary font-mono ${
-                    errorsCompany.companyICE ? 'border-error' : ''
-                  }`}
+                  className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary font-mono ${errorsCompany.companyICE ? 'border-error' : ''
+                    }`}
                 />
                 {errorsCompany.companyICE && (
                   <p className="text-sm text-error font-medium">{errorsCompany.companyICE.message}</p>
@@ -333,9 +327,8 @@ export function Settings() {
                       required: 'Address is required',
                       minLength: { value: 5, message: 'Address must be at least 5 characters' },
                     })}
-                    className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${
-                      errorsCompany.address ? 'border-error' : ''
-                    }`}
+                    className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${errorsCompany.address ? 'border-error' : ''
+                      }`}
                   />
                   {errorsCompany.address && (
                     <p className="text-sm text-error font-medium">{errorsCompany.address.message}</p>
@@ -352,9 +345,8 @@ export function Settings() {
                       required: 'City is required',
                       minLength: { value: 2, message: 'City must be at least 2 characters' },
                     })}
-                    className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${
-                      errorsCompany.city ? 'border-error' : ''
-                    }`}
+                    className={`bg-background-secondary border-border text-text-primary placeholder:text-text-tertiary ${errorsCompany.city ? 'border-error' : ''
+                      }`}
                   />
                   {errorsCompany.city && (
                     <p className="text-sm text-error font-medium">{errorsCompany.city.message}</p>
@@ -464,36 +456,36 @@ export function Settings() {
     </div>
   );
 }
-        
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-medium text-[#0F172A]">{t.settings.notifications.email.title}</p>
-              <p className="text-sm text-[#64748B]">{t.settings.notifications.email.description}</p>
-            </div>
-            <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#10B981]" />
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-medium text-[#0F172A]">{t.settings.notifications.processing.title}</p>
-              <p className="text-sm text-[#64748B]">{t.settings.notifications.processing.description}</p>
-            </div>
-            <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#10B981]" />
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-medium text-[#0F172A]">{t.settings.notifications.weekly.title}</p>
-              <p className="text-sm text-[#64748B]">{t.settings.notifications.weekly.description}</p>
-            </div>
-            <input type="checkbox" className="w-5 h-5 accent-[#10B981]" />
-          </div>
-        </div>
-      </Card>
 
-      {/* Security Settings */}
-      <Card className="p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
+<div className="space-y-4">
+  <div className="flex items-center justify-between">
+    <div>
+      <p className="font-medium text-[#0F172A]">{t.settings.notifications.email.title}</p>
+      <p className="text-sm text-[#64748B]">{t.settings.notifications.email.description}</p>
+    </div>
+    <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#10B981]" />
+  </div>
+
+  <div className="flex items-center justify-between">
+    <div>
+      <p className="font-medium text-[#0F172A]">{t.settings.notifications.processing.title}</p>
+      <p className="text-sm text-[#64748B]">{t.settings.notifications.processing.description}</p>
+    </div>
+    <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#10B981]" />
+  </div>
+
+  <div className="flex items-center justify-between">
+    <div>
+      <p className="font-medium text-[#0F172A]">{t.settings.notifications.weekly.title}</p>
+      <p className="text-sm text-[#64748B]">{t.settings.notifications.weekly.description}</p>
+    </div>
+    <input type="checkbox" className="w-5 h-5 accent-[#10B981]" />
+  </div>
+</div>
+      </Card >
+
+  {/* Security Settings */ }
+  < Card className = "p-6 bg-white border border-gray-200 rounded-xl shadow-sm" >
         <div className="flex items-center gap-3 mb-6">
           <Lock size={20} className="text-[#10B981]" />
           <h2 className="text-lg font-semibold text-[#0F172A]">{t.settings.security.title}</h2>
@@ -514,15 +506,15 @@ export function Settings() {
             </Button>
           </div>
         </div>
-      </Card>
+      </Card >
 
-      {/* Save Button */}
-      <div className="flex justify-end">
-        <Button className="bg-[#10B981] hover:bg-[#059669] text-white px-8">
-          <Save size={18} className="mr-2" />
-          {t.settings.saveChanges}
-        </Button>
-      </div>
-    </div>
+  {/* Save Button */ }
+  < div className = "flex justify-end" >
+    <Button className="bg-[#10B981] hover:bg-[#059669] text-white px-8">
+      <Save size={18} className="mr-2" />
+      {t.settings.saveChanges}
+    </Button>
+      </div >
+    </div >
   );
 }
