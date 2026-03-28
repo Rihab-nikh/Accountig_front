@@ -8,37 +8,57 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  
+
   /* SPACING SCALE (8px grid) */
   --spacing-0: 0;
-  --spacing-1: 0.25rem;     /* 4px */
-  --spacing-2: 0.5rem;      /* 8px */
-  --spacing-3: 0.75rem;     /* 12px */
-  --spacing-4: 1rem;        /* 16px */
-  --spacing-6: 1.5rem;      /* 24px */
-  --spacing-8: 2rem;        /* 32px */
-  --spacing-12: 3rem;       /* 48px */
-  --spacing-16: 4rem;       /* 64px */
-  
+  --spacing-1: 0.25rem;
+  /* 4px */
+  --spacing-2: 0.5rem;
+  /* 8px */
+  --spacing-3: 0.75rem;
+  /* 12px */
+  --spacing-4: 1rem;
+  /* 16px */
+  --spacing-6: 1.5rem;
+  /* 24px */
+  --spacing-8: 2rem;
+  /* 32px */
+  --spacing-12: 3rem;
+  /* 48px */
+  --spacing-16: 4rem;
+  /* 64px */
+
   /* BORDER RADIUS */
-  --radius: 0.5rem;         /* 8px for inputs */
-  --radius-md: 0.75rem;     /* 12px for cards */
-  --radius-lg: 1rem;        /* 16px for large components */
-  
+  --radius: 0.5rem;
+  /* 8px for inputs */
+  --radius-md: 0.75rem;
+  /* 12px for cards */
+  --radius-lg: 1rem;
+  /* 16px for large components */
+
   /* SEMANTIC COLOR SYSTEM - WCAG AA Compliant */
   /* Text Colors - strong contrast on light backgrounds */
-  --text-primary: #1F2937;      /* Dark grey (14.5:1 contrast on white) */
-  --text-secondary: #4B5563;    /* Medium grey (7.5:1 contrast on white) */
-  --text-tertiary: #6B7280;     /* Light grey (4.8:1 contrast on white) */
-  --text-muted: #9CA3AF;        /* Muted grey (3:1 contrast on white) */
-  --text-inverted: #FFFFFF;     /* For dark backgrounds */
-  
+  --text-primary: #1F2937;
+  /* Dark grey (14.5:1 contrast on white) */
+  --text-secondary: #4B5563;
+  /* Medium grey (7.5:1 contrast on white) */
+  --text-tertiary: #6B7280;
+  /* Light grey (4.8:1 contrast on white) */
+  --text-muted: #9CA3AF;
+  /* Muted grey (3:1 contrast on white) */
+  --text-inverted: #FFFFFF;
+  /* For dark backgrounds */
+
   /* Backgrounds */
   --background: #FFFFFF;
-  --background-secondary: #F9FAFB;  /* Off-white */
-  --background-tertiary: #F3F4F6;   /* Light grey */
+  --background-primary: #FFFFFF;
+  /* Pure white */
+  --background-secondary: #F9FAFB;
+  /* Off-white */
+  --background-tertiary: #F3F4F6;
+  /* Light grey */
   --card: #FFFFFF;
-  
+
   /* UI Elements */
   --foreground: #1F2937;
   --card-foreground: #1F2937;
@@ -50,12 +70,14 @@
   --secondary-foreground: #1F2937;
   --muted: #E5E7EB;
   --muted-foreground: #6B7280;
-  --border: #D1D5DB;           /* Accessible grey border */
+  --border: #D1D5DB;
+  /* Accessible grey border */
   --input: #E5E7EB;
   --input-background: #FFFFFF;
-  
+
   /* SEMANTIC COLORS - Success, Warning, Error, Info */
-  --accent: #059669;           /* Emerald (deepened for better contrast) */
+  --accent: #059669;
+  /* Emerald (deepened for better contrast) */
   --accent-foreground: #FFFFFF;
   --success: #10B981;
   --success-bg: #F0FDF4;
@@ -63,7 +85,8 @@
   --warning: #F59E0B;
   --warning-bg: #FFFBEB;
   --warning-border: #FEE3C3;
-  --error: #DC2626;            /* Deepened red for contrast */
+  --error: #DC2626;
+  /* Deepened red for contrast */
   --error-bg: #FEF2F2;
   --error-border: #FEE2E2;
   --destructive: #DC2626;
@@ -71,18 +94,18 @@
   --info: #0EA5E9;
   --info-bg: #F0F9FF;
   --info-border: #DBEAFE;
-  
+
   /* STATUS BADGE COLORS */
   --status-pending: #F59E0B;
   --status-success: #10B981;
   --status-error: #EF4444;
   --status-processing: #3B82F6;
-  
+
   /* INTERACTIVE ELEMENTS */
   --ring: #059669;
   --switch-background: #E5E7EB;
   --switch-checked: #10B981;
-  
+
   /* SIDEBAR */
   --sidebar: #1F2937;
   --sidebar-foreground: #F9FAFB;
@@ -92,7 +115,7 @@
   --sidebar-accent-foreground: #F9FAFB;
   --sidebar-border: #374151;
   --sidebar-ring: #10B981;
-  
+
   /* CHART COLORS */
   --chart-1: #10B981;
   --chart-2: #3B82F6;
@@ -107,12 +130,14 @@
   --text-tertiary: #9CA3AF;
   --text-muted: #6B7280;
   --text-inverted: #1F2937;
-  
+
   --background: #111827;
+  --background-primary: #111827;
+  /* Dark bg */
   --background-secondary: #1F2937;
   --background-tertiary: #374151;
   --card: #1F2937;
-  
+
   --foreground: #F3F4F6;
   --card-foreground: #F3F4F6;
   --popover: #1F2937;
@@ -126,7 +151,7 @@
   --border: #374151;
   --input: #374151;
   --input-background: #1F2937;
-  
+
   --accent: #10B981;
   --accent-foreground: #111827;
   --success: #10B981;
@@ -143,11 +168,11 @@
   --info: #0EA5E9;
   --info-bg: #0C2340;
   --info-border: #0369A1;
-  
+
   --ring: #10B981;
   --switch-background: #4B5563;
   --switch-checked: #10B981;
-  
+
   --sidebar: #111827;
   --sidebar-foreground: #D1D5DB;
   --sidebar-primary: #10B981;
@@ -156,7 +181,7 @@
   --sidebar-accent-foreground: #F3F4F6;
   --sidebar-border: #374151;
   --sidebar-ring: #10B981;
-  
+
   --chart-1: #10B981;
   --chart-2: #3B82F6;
   --chart-3: #8B5CF6;
@@ -170,7 +195,7 @@
   --color-text-tertiary: var(--text-tertiary);
   --color-text-muted: var(--text-muted);
   --color-text-inverted: var(--text-inverted);
-  
+
   --color-background: var(--background);
   --color-background-secondary: var(--background-secondary);
   --color-background-tertiary: var(--background-tertiary);
@@ -187,7 +212,7 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  
+
   --color-success: var(--success);
   --color-success-bg: var(--success-bg);
   --color-success-border: var(--success-border);
@@ -200,7 +225,7 @@
   --color-info: var(--info);
   --color-info-bg: var(--info-bg);
   --color-info-border: var(--info-border);
-  
+
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -209,13 +234,13 @@
   --color-switch-background: var(--switch-background);
   --color-switch-checked: var(--switch-checked);
   --color-ring: var(--ring);
-  
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -224,7 +249,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  
+
   --radius: var(--radius);
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
