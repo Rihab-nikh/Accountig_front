@@ -1,9 +1,10 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Card } from '../components/ui/card';
-import { PageHeader } from '../components/reusable/PageHeader';
+import { Checkbox } from '../components/ui/checkbox';
 import { useAuth } from '../contexts/AuthContext';
 
 export function LoginPage() {
@@ -11,17 +12,46 @@ export function LoginPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [emailError, setEmailError] = useState<string | null>(null);
+    const [passwordError, setPasswordError] = useState<string | null>(null);
+
+    const validateForm = (): boolean => {
+        setEmailError(null);
+        setPasswordError(null);
+        let isValid = true;
+
+        if (!email.trim()) {
+            setEmailError('Email or username is required');
+            isValid = false;
+        } else if (email.includes('@') && !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            setEmailError('Please enter a valid email address');
+            isValid = false;
+        }
+
+        if (!password) {
+            setPasswordError('Password is required');
+            isValid = false;
+        }
+
+        return isValid;
+    };
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setError(null);
 
+        if (!validateForm()) {
+            return;
+        }
+
         try {
             await login(email, password);
             navigate('/');
         } catch (err) {
-            const message = err instanceof Error ? err.message : 'Unable to login';
+            const message = err instanceof Error ? err.message : 'Unable to login. Please check your credentials.';
             setError(message);
         }
     };
@@ -56,7 +86,7 @@ export function LoginPage() {
                     />
                     {error && <p className="text-sm text-red-600">{error}</p>}
                     <Button className="w-full" type="submit" disabled={isLoading}>
-                        {isLoading ? 'Signing in…' : 'Sign in'}
+                        {isLoading ? 'Signing inï¿½' : 'Sign in'}
                     </Button>
                 </form>
                 <p className="mt-4 text-sm text-gray-500">
