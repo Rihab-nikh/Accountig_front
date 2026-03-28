@@ -155,37 +155,49 @@ export function DataTable<T extends { id: string }>({
         <div className="space-y-4">
             {/* Search Bar */}
             {enableSearch && (
-                <div className="relative">
-                    <Search
-                        className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary"
-                        size={18}
-                    />
-                    <Input
-                        type="text"
-                        placeholder="Search table..."
-                        value={searchQuery}
-                        onChange={(e) => {
-                            setSearchQuery(e.target.value);
-                            setCurrentPage(1);
-                        }}
-                        className="pl-10 bg-background-primary border-border text-text-primary placeholder:text-text-tertiary"
-                    />
+                <div className="space-y-2">
+                    <label htmlFor="table-search" className="block text-sm font-medium text-text-primary">
+                        Search table
+                    </label>
+                    <div className="relative">
+                        <Search
+                            className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary pointer-events-none"
+                            size={18}
+                            aria-hidden="true"
+                        />
+                        <Input
+                            id="table-search"
+                            type="text"
+                            placeholder="Search by name, email, or status..."
+                            value={searchQuery}
+                            onChange={(e) => {
+                                setSearchQuery(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            className="pl-10 bg-background-primary border-border text-text-primary placeholder:text-text-tertiary"
+                            aria-label="Search table contents"
+                            aria-describedby="search-hint"
+                        />
+                        <p id="search-hint" className="text-xs text-text-tertiary mt-1">
+                            Search across all columns
+                        </p>
+                    </div>
                 </div>
             )}
 
             {/* Table */}
             <Card className="overflow-hidden">
-                <Table>
+                <Table role="grid">
                     <TableHeader>
-                        <TableRow className="border-b border-border hover:bg-transparent bg-background-secondary">
+                        <TableRow className="border-b border-border hover:bg-transparent bg-background-secondary" role="row">
                             {isSelectable && (
-                                <TableHead className="w-12 pr-0 flex items-center">
+                                <TableHead className="w-12 pr-0 flex items-center" role="columnheader">
                                     <Checkbox
                                         checked={
                                             displayData.length > 0 && selectedIds.length === displayData.length
                                         }
                                         onChange={() => toggleAllSelection()}
-                                        aria-label="Select all rows"
+                                        aria-label="Select all rows on this page"
                                     />
                                 </TableHead>
                             )}
@@ -194,10 +206,29 @@ export function DataTable<T extends { id: string }>({
                                     key={column.id}
                                     className={`${column.width || ''} ${column.sortable ? 'cursor-pointer hover:text-text-primary' : ''}`}
                                     onClick={() => column.sortable && handleSort(column.id)}
+                                    onKeyDown={(e) => {
+                                        if (column.sortable && (e.key === 'Enter' || e.key === ' ')) {
+                                            e.preventDefault();
+                                            handleSort(column.id);
+                                        }
+                                    }}
+                                    role="columnheader"
+                                    tabIndex={column.sortable ? 0 : undefined}
+                                    aria-sort={
+                                        sortColumn === column.id
+                                            ? sortDir === 'asc'
+                                                ? 'ascending'
+                                                : 'descending'
+                                            : 'none'
+                                    }
                                 >
                                     <div className="flex items-center gap-2 text-text-primary font-semibold">
                                         <span>{column.header}</span>
-                                        {column.sortable && getSortIcon(column.id)}
+                                        {column.sortable && (
+                                            <span aria-hidden="true">
+                                                {getSortIcon(column.id)}
+                                            </span>
+                                        )}
                                     </div>
                                 </TableHead>
                             ))}
@@ -210,18 +241,27 @@ export function DataTable<T extends { id: string }>({
                                 className={`border-b border-border hover:bg-background-secondary transition-colors ${onRowClick ? 'cursor-pointer' : ''
                                     }`}
                                 onClick={() => onRowClick?.(row)}
+                                role="row"
+                                tabIndex={onRowClick ? 0 : undefined}
+                                onKeyDown={(e) => {
+                                    if (onRowClick && (e.key === 'Enter' || e.key === ' ')) {
+                                        e.preventDefault();
+                                        onRowClick(row);
+                                    }
+                                }}
                             >
                                 {isSelectable && (
-                                    <TableCell className="pr-0 w-12">
+                                    <TableCell className="pr-0 w-12" role="gridcell">
                                         <Checkbox
                                             checked={selectedIds.includes(row.id)}
                                             onChange={() => toggleRowSelection(row.id)}
                                             onClick={(e) => e.stopPropagation()}
+                                            aria-label={`Select row ${row.id}`}
                                         />
                                     </TableCell>
                                 )}
                                 {columns.map((column) => (
-                                    <TableCell key={`${row.id}-${column.id}`} className="text-text-primary">
+                                    <TableCell key={`${row.id}-${column.id}`} className="text-text-primary" role="gridcell">
                                         {column.render
                                             ? column.render(row)
                                             : String((row as any)[column.accessor || column.id] || '')}
@@ -235,7 +275,11 @@ export function DataTable<T extends { id: string }>({
 
             {/* Pagination */}
             {enablePagination && totalPages > 1 && (
-                <div className="flex items-center justify-between py-4 px-4 bg-background-primary border border-border rounded-lg">
+                <nav
+                    className="flex items-center justify-between py-4 px-4 bg-background-primary border border-border rounded-lg"
+                    aria-label="Table pagination"
+                    role="navigation"
+                >
                     <div className="text-sm text-text-secondary">
                         Showing {Math.min((currentPage - 1) * pageSize + 1, filteredData.length)} to{' '}
                         {Math.min(currentPage * pageSize, filteredData.length)} of {filteredData.length} results
@@ -248,11 +292,13 @@ export function DataTable<T extends { id: string }>({
                             disabled={!hasPrevPage}
                             onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                             className="text-text-secondary disabled:text-text-muted"
+                            aria-label="Go to previous page"
+                            title="Previous page"
                         >
                             <ChevronLeft size={16} />
                         </Button>
 
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1" role="group" aria-label="Page numbers">
                             {Array.from({ length: totalPages }, (_, i) => i + 1)
                                 .filter((page) => {
                                     const diff = Math.abs(page - currentPage);
@@ -261,13 +307,15 @@ export function DataTable<T extends { id: string }>({
                                 .map((page, idx, arr) => (
                                     <React.Fragment key={page}>
                                         {idx > 0 && arr[idx - 1] !== page - 1 && (
-                                            <span className="text-text-tertiary">...</span>
+                                            <span className="text-text-tertiary" aria-hidden="true">...</span>
                                         )}
                                         <Button
                                             variant={page === currentPage ? 'default' : 'outline'}
                                             size="sm"
                                             onClick={() => setCurrentPage(page)}
                                             className={page === currentPage ? 'bg-accent text-white' : ''}
+                                            aria-label={`Go to page ${page}`}
+                                            aria-current={page === currentPage ? 'page' : undefined}
                                         >
                                             {page}
                                         </Button>
@@ -281,11 +329,13 @@ export function DataTable<T extends { id: string }>({
                             disabled={!hasNextPage}
                             onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                             className="text-text-secondary disabled:text-text-muted"
+                            aria-label="Go to next page"
+                            title="Next page"
                         >
                             <ChevronRight size={16} />
                         </Button>
                     </div>
-                </div>
+                </nav>
             )}
         </div>
     );

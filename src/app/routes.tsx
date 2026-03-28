@@ -9,6 +9,7 @@ import { ProtectedRoute } from './hooks/ProtectedRoute';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AccountantsPage } from './pages/admin/AccountantsPage';
 import { ClientsPage as AdminClientsPage } from './pages/admin/ClientsPage';
+import { AdminSettings } from './pages/admin/Settings';
 
 // Accountant Pages
 import { AccountantDashboard } from './pages/accountant/AccountantDashboard';
@@ -65,6 +66,7 @@ export const router = createBrowserRouter([
       { index: true, Component: AdminDashboard },
       { path: 'accountants', Component: AccountantsPage },
       { path: 'clients', Component: AdminClientsPage },
+      { path: 'settings', Component: AdminSettings },
     ],
   },
 
