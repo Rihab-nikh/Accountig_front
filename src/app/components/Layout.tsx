@@ -54,7 +54,7 @@ export function Layout() {
                 className={`
                   flex items-center gap-3 px-4 py-3 rounded-lg transition-colors
                   ${active
-                    ? 'bg-[#10B981] text-white'
+                    ? 'bg-sky-600 text-white'
                     : 'text-[#94A3B8] hover:bg-[#1E293B] hover:text-white'
                   }
                 `}
@@ -83,7 +83,7 @@ export function Layout() {
               <Input
                 type="text"
                 placeholder={t.header.searchPlaceholder}
-                className="pl-10 bg-[#F8FAFC] border-gray-200"
+                className="pl-10 bg-[#F8FAFC] border-gray-200 placeholder-gray-500"
               />
             </div>
           </div>

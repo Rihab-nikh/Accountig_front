@@ -46,13 +46,13 @@ export function AccountantDashboard() {
             title: t.accountantDashboard.stats.totalClients,
             value: stats.totalClients,
             icon: <FileText size={24} />,
-            color: 'bg-blue-500',
+            color: 'bg-sky-600',
         },
         {
             title: t.accountantDashboard.stats.pendingDocuments,
             value: stats.pendingDocuments,
             icon: <FileText size={24} />,
-            color: 'bg-orange-500',
+            color: 'bg-sky-600',
         },
         {
             title: t.accountantDashboard.stats.thisMonthExpenses,
@@ -61,7 +61,7 @@ export function AccountantDashboard() {
                 maximumFractionDigits: 2,
             })} MAD`,
             icon: <DollarSign size={24} />,
-            color: 'bg-purple-500',
+            color: 'bg-sky-600',
         },
         {
             title: t.accountantDashboard.stats.tvaRecoverable,
@@ -72,7 +72,7 @@ export function AccountantDashboard() {
             trend: '+15.2%',
             trendUp: true,
             icon: <TrendingUp size={24} />,
-            color: 'bg-green-500',
+            color: 'bg-sky-600',
         },
     ];
 

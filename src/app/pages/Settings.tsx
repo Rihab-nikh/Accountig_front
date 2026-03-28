@@ -240,7 +240,7 @@ export function Settings() {
               <div className="flex items-center gap-3 pt-4">
                 <Button
                   type="submit"
-                  className="bg-accent hover:bg-accent/90 text-white font-semibold flex items-center gap-2"
+                  className="bg-sky-600 hover:bg-sky-700 text-white font-semibold flex items-center gap-2"
                 >
                   <Save size={16} />
                   Save Profile
@@ -357,7 +357,7 @@ export function Settings() {
               <div className="flex items-center gap-3 pt-4">
                 <Button
                   type="submit"
-                  className="bg-accent hover:bg-accent/90 text-white font-semibold flex items-center gap-2"
+                  className="bg-sky-600 hover:bg-sky-700 text-white font-semibold flex items-center gap-2"
                 >
                   <Save size={16} />
                   Save Company Info
@@ -441,7 +441,7 @@ export function Settings() {
               </div>
 
               <Button
-                className="w-full bg-accent hover:bg-accent/90 text-white font-semibold mt-6"
+                className="w-full bg-sky-600 hover:bg-sky-700 text-white font-semibold mt-6"
                 onClick={() => {
                   // Simulate saving
                 }}

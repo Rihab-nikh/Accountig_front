@@ -175,7 +175,7 @@ export function AdminSettings() {
                             <div className="flex items-center gap-3 pt-4">
                                 <Button
                                     type="submit"
-                                    className="bg-accent hover:bg-accent/90 text-white font-semibold flex items-center gap-2"
+                                    className="bg-sky-600 hover:bg-sky-700 text-white font-semibold flex items-center gap-2"
                                 >
                                     <Save size={16} />
                                     Save Settings
@@ -262,7 +262,7 @@ export function AdminSettings() {
                             </div>
 
                             <div className="pt-4 border-t border-border">
-                                <Button className="bg-accent hover:bg-accent/90 text-white font-semibold">
+                                <Button className="bg-sky-600 hover:bg-sky-700 text-white font-semibold">
                                     <Save size={16} className="mr-2" />
                                     Save Security Settings
                                 </Button>
@@ -315,7 +315,7 @@ export function AdminSettings() {
                                 <Switch />
                             </div>
 
-                            <Button className="w-full bg-accent hover:bg-accent/90 text-white font-semibold mt-6">
+                            <Button className="w-full bg-sky-600 hover:bg-sky-700 text-white font-semibold mt-6">
                                 <Save size={16} className="mr-2" />
                                 Save Notification Preferences
                             </Button>

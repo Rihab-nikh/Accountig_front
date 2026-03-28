@@ -19,7 +19,7 @@ export function Dashboard() {
       trend: '+12.5%',
       trendUp: true,
       icon: DollarSign,
-      color: 'bg-blue-500',
+      color: 'bg-sky-600',
       action: 'reports',
     },
     {
@@ -29,7 +29,7 @@ export function Dashboard() {
       trend: `-8 ${t.dashboard.kpis.fromLastWeek}`,
       trendUp: false,
       icon: FileText,
-      color: 'bg-orange-500',
+      color: 'bg-sky-600',
       action: 'inbox',
     },
     {
@@ -39,7 +39,7 @@ export function Dashboard() {
       trend: '+15.2%',
       trendUp: true,
       icon: TrendingUp,
-      color: 'bg-[#10B981]',
+      color: 'bg-sky-600',
       action: 'reports',
     },
   ];

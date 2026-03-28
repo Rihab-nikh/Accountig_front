@@ -45,19 +45,19 @@ export function AdminDashboard() {
             title: 'Total Accountants',
             value: stats.totalAccountants,
             icon: <Users size={24} />,
-            color: 'bg-blue-500',
+            color: 'bg-sky-600',
         },
         {
             title: 'Total Clients',
             value: stats.totalClients,
             icon: <Building2 size={24} />,
-            color: 'bg-purple-500',
+            color: 'bg-sky-600',
         },
         {
             title: 'Pending Documents',
             value: stats.pendingDocuments,
             icon: <FileText size={24} />,
-            color: 'bg-orange-500',
+            color: 'bg-sky-600',
         },
         {
             title: 'Processed Invoices (This Month)',
@@ -65,7 +65,7 @@ export function AdminDashboard() {
             trend: '+12.5%',
             trendUp: true,
             icon: <TrendingUp size={24} />,
-            color: 'bg-green-500',
+            color: 'bg-sky-600',
         },
     ];
 
