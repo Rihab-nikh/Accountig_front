@@ -1,15 +1,43 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* TYPOGRAPHY */
-  --font-size: 16px;
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif;
+  /* ========== TYPOGRAPHY - Meta Inspired ========== */
+  --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font-family-mono: 'Menlo', 'Monaco', 'Courier New', monospace;
+
+  /* Font sizes with increased generosity for readability */
+  --font-size-xs: 0.75rem;
+  /* 12px */
+  --font-size-sm: 0.875rem;
+  /* 14px */
+  --font-size-base: 1rem;
+  /* 16px */
+  --font-size-lg: 1.125rem;
+  /* 18px */
+  --font-size-xl: 1.25rem;
+  /* 20px */
+  --font-size-2xl: 1.5rem;
+  /* 24px */
+  --font-size-3xl: 1.875rem;
+  /* 30px */
+  --font-size-4xl: 2.25rem;
+  /* 36px */
+  --font-size-5xl: 3rem;
+  /* 48px */
+
+  /* Font weights */
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* SPACING SCALE (8px grid) */
+  /* Line heights - generous for accessibility */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
+
+  /* ========== SPACING SCALE (8px Grid) - Generous ========== */
   --spacing-0: 0;
   --spacing-1: 0.25rem;
   /* 4px */
@@ -27,101 +55,192 @@
   /* 48px */
   --spacing-16: 4rem;
   /* 64px */
+  --spacing-20: 5rem;
+  /* 80px */
+  --spacing-24: 6rem;
+  /* 96px */
 
-  /* BORDER RADIUS */
+  /* ========== BORDER RADIUS - Soft Curves (Meta Style) ========== */
+  --radius-sm: 0.375rem;
+  /* 6px for subtle elements */
   --radius: 0.5rem;
-  /* 8px for inputs */
+  /* 8px for inputs, default */
   --radius-md: 0.75rem;
   /* 12px for cards */
   --radius-lg: 1rem;
-  /* 16px for large components */
+  /* 16px for larger components */
+  --radius-xl: 1.25rem;
+  /* 20px for prominent cards */
+  --radius-full: 9999px;
+  /* Fully rounded */
 
-  /* SEMANTIC COLOR SYSTEM - WCAG AA Compliant */
-  /* Text Colors - strong contrast on light backgrounds */
-  --text-primary: #1F2937;
-  /* Dark grey (14.5:1 contrast on white) */
-  --text-secondary: #4B5563;
-  /* Medium grey (7.5:1 contrast on white) */
-  --text-tertiary: #6B7280;
-  /* Light grey (4.8:1 contrast on white) */
-  --text-muted: #9CA3AF;
-  /* Muted grey (3:1 contrast on white) */
-  --text-inverted: #FFFFFF;
+  /* ========== COLOR PALETTE - Meta Inspired ========== */
+
+  /* Background colors - Generous whitespace with neutral tones */
+  --color-bg-primary: #FFFFFF;
+  /* Pure white */
+  --color-bg-secondary: #F5F6F7;
+  /* Soft neutral grey (Meta-inspired) */
+  --color-bg-tertiary: #EBEBF0;
+  /* Light neutral for hover states */
+  --color-bg-subtle: #F0F2F5;
+  /* Very subtle background */
+
+  /* Text colors - Maintained contrast hierarchy */
+  --color-text-primary: #050505;
+  /* Near-black for main text */
+  --color-text-secondary: #3A3F47;
+  /* Dark grey for secondary */
+  --color-text-tertiary: #65676B;
+  /* Medium grey for muted text */
+  --color-text-quaternary: #8A8D91;
+  /* Light grey for minimal text */
+  --color-text-inverse: #FFFFFF;
   /* For dark backgrounds */
 
-  /* Backgrounds */
-  --background: #FFFFFF;
-  --background-primary: #FFFFFF;
-  /* Pure white */
-  --background-secondary: #F9FAFB;
-  /* Off-white */
-  --background-tertiary: #F3F4F6;
-  /* Light grey */
-  --card: #FFFFFF;
+  /* Accent colors - Restrained blue/purple with toned green */
+  --color-primary: #0A66C2;
+  /* Meta blue */
+  --color-primary-light: #E7F3FF;
+  /* Light blue background */
+  --color-primary-lighter: #F0F8FF;
+  /* Very light blue */
 
-  /* UI Elements */
-  --foreground: #1F2937;
-  --card-foreground: #1F2937;
-  --popover: #FFFFFF;
-  --popover-foreground: #1F2937;
-  --primary: #1F2937;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F3F4F6;
-  --secondary-foreground: #1F2937;
-  --muted: #E5E7EB;
-  --muted-foreground: #6B7280;
-  --border: #D1D5DB;
-  /* Accessible grey border */
-  --input: #E5E7EB;
-  --input-background: #FFFFFF;
+  --color-secondary: #5B21B6;
+  /* Purple accent */
+  --color-secondary-light: #F3E8FF;
+  /* Light purple background */
 
-  /* SEMANTIC COLORS - Success, Warning, Error, Info */
-  --accent: #059669;
-  /* Emerald (deepened for better contrast) */
-  --accent-foreground: #FFFFFF;
-  --success: #10B981;
-  --success-bg: #F0FDF4;
-  --success-border: #DBEAFE;
-  --warning: #F59E0B;
-  --warning-bg: #FFFBEB;
-  --warning-border: #FEE3C3;
-  --error: #DC2626;
-  /* Deepened red for contrast */
-  --error-bg: #FEF2F2;
-  --error-border: #FEE2E2;
-  --destructive: #DC2626;
-  --destructive-foreground: #FFFFFF;
-  --info: #0EA5E9;
-  --info-bg: #F0F9FF;
-  --info-border: #DBEAFE;
+  --color-success: #059669;
+  /* Toned green (kept from brand) */
+  --color-success-light: #D1FAE5;
+  /* Very light green */
+  --color-success-bg: #ECFDF5;
+  /* Light green background */
 
-  /* STATUS BADGE COLORS */
-  --status-pending: #F59E0B;
-  --status-success: #10B981;
-  --status-error: #EF4444;
-  --status-processing: #3B82F6;
+  --color-warning: #D97706;
+  /* Amber/warning */
+  --color-warning-light: #FEF3C7;
+  /* Light amber */
+  --color-warning-bg: #FFFBEB;
+  /* Light amber background */
 
-  /* INTERACTIVE ELEMENTS */
-  --ring: #059669;
-  --switch-background: #E5E7EB;
-  --switch-checked: #10B981;
+  --color-error: #DC2626;
+  /* Red for errors */
+  --color-error-light: #FEE2E2;
+  /* Light red */
+  --color-error-bg: #FEF2F2;
+  /* Light red background */
 
-  /* SIDEBAR */
-  --sidebar: #1F2937;
-  --sidebar-foreground: #F9FAFB;
-  --sidebar-primary: #10B981;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #374151;
-  --sidebar-accent-foreground: #F9FAFB;
-  --sidebar-border: #374151;
-  --sidebar-ring: #10B981;
+  --color-info: #0EA5E9;
+  /* Cyan/info */
+  --color-info-light: #CFFAFE;
+  /* Light cyan */
+  --color-info-bg: #F0F9FF;
+  /* Light cyan background */
 
-  /* CHART COLORS */
-  --chart-1: #10B981;
-  --chart-2: #3B82F6;
-  --chart-3: #8B5CF6;
-  --chart-4: #F59E0B;
-  --chart-5: #EF4444;
+  /* Border colors - Subtle and refined */
+  --color-border-primary: #CED0D4;
+  /* Standard border */
+  --color-border-secondary: #E5E5E5;
+  /* Lighter border */
+  --color-border-subtle: #E8E8E8;
+  /* Very subtle border */
+
+  /* ========== SHADOW SYSTEM - Soft and Layered (Meta Style) ========== */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.06);
+  --shadow-2xl: 0 24px 48px rgba(0, 0, 0, 0.12), 0 12px 24px rgba(0, 0, 0, 0.06);
+  --shadow-inner: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  /* ========== TRANSITIONS & ANIMATIONS ========== */
+  --transition-fast: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ========== SEMANTIC ALIASES (for backward compatibility) ========== */
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-tertiary: var(--color-text-tertiary);
+  --text-muted: var(--color-text-quaternary);
+  --text-inverted: var(--color-text-inverse);
+
+  --background: var(--color-bg-primary);
+  --background-primary: var(--color-bg-primary);
+  --background-secondary: var(--color-bg-secondary);
+  --background-tertiary: var(--color-bg-tertiary);
+
+  --border: var(--color-border-primary);
+
+  --accent: var(--color-success);
+  --accent-foreground: var(--color-text-inverse);
+
+  --success: var(--color-success);
+  --success-bg: var(--color-success-bg);
+  --success-light: var(--color-success-light);
+
+  --warning: var(--color-warning);
+  --warning-bg: var(--color-warning-bg);
+
+  --error: var(--color-error);
+  --error-bg: var(--color-error-bg);
+
+  --info: var(--color-info);
+  --info-bg: var(--color-info-bg);
+
+  --destructive: var(--color-error);
+  --destructive-foreground: var(--color-text-inverse);
+
+  --ring: var(--color-primary);
+
+  /* ========== UI ELEMENT COLORS ========== */
+  --foreground: var(--color-text-primary);
+  --card: var(--color-bg-primary);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-bg-primary);
+  --popover-foreground: var(--color-text-primary);
+
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-text-inverse);
+  --primary-light: var(--color-primary-light);
+
+  --secondary: var(--color-secondary);
+  --secondary-foreground: var(--color-text-inverse);
+  --secondary-light: var(--color-secondary-light);
+
+  --muted: var(--color-border-secondary);
+  --muted-foreground: var(--color-text-tertiary);
+
+  --input: var(--color-bg-tertiary);
+  --input-background: var(--color-bg-primary);
+  --input-border: var(--color-border-secondary);
+
+  /* ========== STATUS COLORS ========== */
+  --status-pending: var(--color-warning);
+  --status-success: var(--color-success);
+  --status-processing: var(--color-primary);
+  --status-error: var(--color-error);
+
+  /* ========== SIDEBAR COLORS ========== */
+  --sidebar: #F5F6F7;
+  --sidebar-foreground: var(--color-text-primary);
+  --sidebar-primary: var(--color-primary);
+  --sidebar-primary-foreground: var(--color-text-inverse);
+  --sidebar-accent: var(--color-bg-tertiary);
+  --sidebar-accent-foreground: var(--color-text-primary);
+  --sidebar-border: var(--color-border-secondary);
+  --sidebar-ring: var(--color-primary);
+
+  /* ========== CHART COLORS ========== */
+  --chart-1: var(--color-success);
+  --chart-2: var(--color-primary);
+  --chart-3: var(--color-secondary);
+  --chart-4: var(--color-warning);
+  --chart-5: var(--color-error);
 }
 
 .dark {
