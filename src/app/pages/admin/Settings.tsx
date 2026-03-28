@@ -116,7 +116,7 @@ export function AdminSettings() {
                                 </div>
                             )}
 
-                            <div className="space-y-2">
+                            <div className="space-y-3">
                                 <Label htmlFor="companyName" className="text-text-primary font-semibold">
                                     Organization Name
                                 </Label>
@@ -134,7 +134,7 @@ export function AdminSettings() {
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
+                                <div className="space-y-3">
                                     <Label htmlFor="adminEmail" className="text-text-primary font-semibold">
                                         Admin Email
                                     </Label>
@@ -155,7 +155,7 @@ export function AdminSettings() {
                                     )}
                                 </div>
 
-                                <div className="space-y-2">
+                                <div className="space-y-3">
                                     <Label htmlFor="adminPhone" className="text-text-primary font-semibold">
                                         Admin Phone
                                     </Label>

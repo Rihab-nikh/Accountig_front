@@ -57,7 +57,7 @@ export function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-background-secondary flex flex-col items-center justify-center px-4 py-12">
+        <div className="min-h-screen bg-background-secondary flex flex-col items-center justify-center px-4 py-8 md:py-12">
             <div className="w-full max-w-md">
                 {/* Logo/Branding Area */}
                 <div className="text-center mb-8">

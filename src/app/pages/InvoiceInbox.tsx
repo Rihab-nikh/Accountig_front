@@ -276,7 +276,7 @@ export function InvoiceInbox() {
         </div>
         
         {filteredInvoices.length === 0 && (
-          <div className="py-12 text-center text-[#64748B]">
+          <div className="py-8 md:py-12 text-center text-[#64748B]">
             {t.invoiceInbox.noInvoices}
           </div>
         )}

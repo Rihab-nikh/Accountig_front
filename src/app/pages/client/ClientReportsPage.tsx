@@ -38,7 +38,7 @@ export function ClientReportsPage() {
             />
 
             {reports.length === 0 ? (
-                <Card className="p-12 text-center">
+                <Card className="p-8 md:p-12 text-center">
                     <FileText size={48} className="mx-auto text-gray-400 mb-4" />
                     <p className="text-gray-600">No reports yet. Reports will appear here once data is processed.</p>
                 </Card>

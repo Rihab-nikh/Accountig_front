@@ -38,8 +38,13 @@ export function Layout() {
       {/* Sidebar */}
       <aside className="w-64 bg-[#0F172A] text-white flex flex-col fixed h-full left-0 rtl:left-auto rtl:right-0">
         <div className="p-6 border-b border-[#1E293B]">
-          <h1 className="text-xl font-semibold">{t.appName}</h1>
-          <p className="text-xs text-[#64748B] mt-1">{t.appTagline}</p>
+          <div className="hidden md:block">
+            <h1 className="text-xl font-semibold">{t.appName}</h1>
+            <p className="text-xs text-[#64748B] mt-1">{t.appTagline}</p>
+          </div>
+          <div className="md:hidden flex items-center justify-center">
+            <span className="text-lg font-semibold">SC</span>
+          </div>
         </div>
 
         <nav className="flex-1 p-4 space-y-1">
@@ -90,16 +95,16 @@ export function Layout() {
 
           <div className="flex items-center gap-4">
             {/* Language Switcher */}
-            <div className="flex items-center gap-2 bg-[#F8FAFC] rounded-lg p-1">
+            <div className="flex items-center gap-0 bg-transparent">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setLanguage('en')}
                 aria-label="Switch to English"
                 aria-pressed={language === 'en'}
-                className={`h-8 px-3 ${language === 'en'
-                    ? 'bg-white text-[#0F172A] shadow-sm'
-                    : 'text-[#64748B] hover:text-[#0F172A]'
+                className={`h-8 px-3 rounded-none border-b-2 transition-colors ${language === 'en'
+                    ? 'text-[#0F172A] border-b-sky-600'
+                    : 'text-[#64748B] border-b-transparent hover:text-[#0F172A]'
                   }`}
               >
                 EN
@@ -110,9 +115,9 @@ export function Layout() {
                 onClick={() => setLanguage('fr')}
                 aria-label="Switch to French"
                 aria-pressed={language === 'fr'}
-                className={`h-8 px-3 ${language === 'fr'
-                    ? 'bg-white text-[#0F172A] shadow-sm'
-                    : 'text-[#64748B] hover:text-[#0F172A]'
+                className={`h-8 px-3 rounded-none border-b-2 transition-colors ${language === 'fr'
+                    ? 'text-[#0F172A] border-b-sky-600'
+                    : 'text-[#64748B] border-b-transparent hover:text-[#0F172A]'
                   }`}
               >
                 FR
@@ -123,9 +128,9 @@ export function Layout() {
                 onClick={() => setLanguage('ar')}
                 aria-label="Switch to Arabic"
                 aria-pressed={language === 'ar'}
-                className={`h-8 px-3 ${language === 'ar'
-                    ? 'bg-white text-[#0F172A] shadow-sm'
-                    : 'text-[#64748B] hover:text-[#0F172A]'
+                className={`h-8 px-3 rounded-none border-b-2 transition-colors ${language === 'ar'
+                    ? 'text-[#0F172A] border-b-sky-600'
+                    : 'text-[#64748B] border-b-transparent hover:text-[#0F172A]'
                   }`}
               >
                 AR

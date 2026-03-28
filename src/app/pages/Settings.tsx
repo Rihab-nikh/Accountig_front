@@ -160,7 +160,7 @@ export function Settings() {
               )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Label htmlFor="firstName" className="text-text-primary font-semibold">
                     First Name
                   </Label>
@@ -178,7 +178,7 @@ export function Settings() {
                   )}
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Label htmlFor="lastName" className="text-text-primary font-semibold">
                     Last Name
                   </Label>
@@ -197,7 +197,7 @@ export function Settings() {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <Label htmlFor="email" className="text-text-primary font-semibold">
                   Email Address
                 </Label>
@@ -219,7 +219,7 @@ export function Settings() {
                 )}
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <Label htmlFor="phone" className="text-text-primary font-semibold">
                   Phone Number
                 </Label>
@@ -277,7 +277,7 @@ export function Settings() {
                 </div>
               )}
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <Label htmlFor="companyName" className="text-text-primary font-semibold">
                   Company Name
                 </Label>
@@ -295,7 +295,7 @@ export function Settings() {
                 )}
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <Label htmlFor="companyICE" className="text-text-primary font-semibold">
                   ICE Number
                 </Label>
@@ -317,7 +317,7 @@ export function Settings() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Label htmlFor="address" className="text-text-primary font-semibold">
                     Street Address
                   </Label>
@@ -335,7 +335,7 @@ export function Settings() {
                   )}
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <Label htmlFor="city" className="text-text-primary font-semibold">
                     City
                   </Label>
