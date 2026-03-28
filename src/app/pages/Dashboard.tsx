@@ -73,15 +73,15 @@ export function Dashboard() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       {/* Page Header */}
-      <div>
-        <h1 className="text-3xl font-semibold text-[#0F172A]">{t.dashboard.title}</h1>
-        <p className="text-[#64748B] mt-1">{t.dashboard.subtitle}</p>
+      <div className="pt-2">
+        <h1 className="text-5xl font-bold text-text-primary leading-tight">{t.dashboard.title}</h1>
+        <p className="text-lg text-text-secondary mt-4">{t.dashboard.subtitle}</p>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {kpis.map((kpi, index) => {
           const Icon = kpi.icon;
           const handleKpiClick = () => {
@@ -96,24 +96,24 @@ export function Dashboard() {
             <button
               key={index}
               onClick={handleKpiClick}
-              className="text-left hover:ring-2 hover:ring-accent rounded-xl transition-all"
+              className="text-left hover:shadow-lg rounded-lg transition-all duration-200 focus-ring group"
             >
               <Card
-                className="p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-accent transition-all cursor-pointer"
+                className="p-8 bg-white border border-color-border-secondary rounded-lg shadow-sm hover:shadow-lg hover:border-color-border-primary transition-all duration-200 cursor-pointer"
               >
                 <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-sm text-[#64748B] mb-2">{kpi.title}</p>
-                    <div className="flex items-baseline gap-2">
-                      <h3 className="text-3xl font-semibold text-[#0F172A]">{kpi.value}</h3>
-                      <span className="text-sm text-[#64748B]">{kpi.unit}</span>
+                  <div className="flex-1">
+                    <p className="text-sm text-text-tertiary font-medium mb-3 uppercase tracking-wide">{kpi.title}</p>
+                    <div className="flex items-baseline gap-3">
+                      <h3 className="text-4xl font-bold text-text-primary">{kpi.value}</h3>
+                      <span className="text-base text-text-secondary font-medium">{kpi.unit}</span>
                     </div>
-                    <p className={`text-sm mt-2 ${kpi.trendUp ? 'text-[#10B981]' : 'text-[#64748B]'}`}>
+                    <p className={`text-sm font-medium mt-4 ${kpi.trendUp ? 'text-color-success' : 'text-text-secondary'}`}>
                       {kpi.trend}
                     </p>
                   </div>
-                  <div className={`${kpi.color} p-3 rounded-lg`}>
-                    <Icon size={24} className="text-white" />
+                  <div className={`${kpi.color} p-4 rounded-lg group-hover:shadow-md transition-shadow duration-200`}>
+                    <Icon size={28} className="text-white" />
                   </div>
                 </div>
               </Card>
@@ -124,62 +124,70 @@ export function Dashboard() {
 
       {/* Quick Actions */}
       <div>
-        <h2 className="text-xl font-semibold text-[#0F172A] mb-4">{t.dashboard.quickActions || 'Quick Actions'}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <h2 className="text-2xl font-bold text-text-primary mb-8">{t.dashboard.quickActions || 'Quick Actions'}</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <button
             onClick={() => navigate('/accountant/inbox')}
-            className="p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-300 transition-all text-left"
+            className="p-6 bg-white border border-color-border-secondary rounded-lg hover:shadow-md hover:border-color-border-primary transition-all duration-200 text-left focus-ring group"
           >
-            <FileText size={24} className="text-blue-500 mb-2" />
-            <h3 className="font-medium text-[#0F172A]">{t.dashboard.quickActionReview || 'Review Invoices'}</h3>
-            <p className="text-sm text-[#64748B] mt-1">{t.dashboard.quickActionReviewDesc || 'Check pending invoices'}</p>
+            <div className="p-3 bg-color-primary-light rounded-md mb-4 group-hover:bg-color-primary transition-colors duration-200 w-fit">
+              <FileText size={24} className="text-color-primary" />
+            </div>
+            <h3 className="font-semibold text-lg text-text-primary">{t.dashboard.quickActionReview || 'Review Invoices'}</h3>
+            <p className="text-base text-text-secondary mt-2">{t.dashboard.quickActionReviewDesc || 'Check pending invoices'}</p>
           </button>
 
           <button
             onClick={() => navigate('/accountant/reports')}
-            className="p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-green-300 transition-all text-left"
+            className="p-6 bg-white border border-color-border-secondary rounded-lg hover:shadow-md hover:border-color-border-primary transition-all duration-200 text-left focus-ring group"
           >
-            <TrendingUp size={24} className="text-green-500 mb-2" />
-            <h3 className="font-medium text-[#0F172A]">{t.dashboard.quickActionReports || 'View Reports'}</h3>
-            <p className="text-sm text-[#64748B] mt-1">{t.dashboard.quickActionReportsDesc || 'Generate financial reports'}</p>
+            <div className="p-3 bg-color-success-light rounded-md mb-4 group-hover:bg-color-success transition-colors duration-200 w-fit">
+              <TrendingUp size={24} className="text-color-success" />
+            </div>
+            <h3 className="font-semibold text-lg text-text-primary">{t.dashboard.quickActionReports || 'View Reports'}</h3>
+            <p className="text-base text-text-secondary mt-2">{t.dashboard.quickActionReportsDesc || 'Generate financial reports'}</p>
           </button>
 
           <button
             onClick={() => navigate('/accountant/settings')}
-            className="p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-purple-300 transition-all text-left"
+            className="p-6 bg-white border border-color-border-secondary rounded-lg hover:shadow-md hover:border-color-border-primary transition-all duration-200 text-left focus-ring group"
           >
-            <Settings size={24} className="text-purple-500 mb-2" />
-            <h3 className="font-medium text-[#0F172A]">{t.dashboard.quickActionSettings || 'Settings'}</h3>
-            <p className="text-sm text-[#64748B] mt-1">{t.dashboard.quickActionSettingsDesc || 'Manage your account'}</p>
+            <div className="p-3 bg-color-secondary-light rounded-md mb-4 group-hover:bg-color-secondary transition-colors duration-200 w-fit">
+              <Settings size={24} className="text-color-secondary" />
+            </div>
+            <h3 className="font-semibold text-lg text-text-primary">{t.dashboard.quickActionSettings || 'Settings'}</h3>
+            <p className="text-base text-text-secondary mt-2">{t.dashboard.quickActionSettingsDesc || 'Manage your account'}</p>
           </button>
 
           <button
             onClick={() => navigate('/accountant/clients')}
-            className="p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-orange-300 transition-all text-left"
+            className="p-6 bg-white border border-color-border-secondary rounded-lg hover:shadow-md hover:border-color-border-primary transition-all duration-200 text-left focus-ring group"
           >
-            <Building2 size={24} className="text-orange-500 mb-2" />
-            <h3 className="font-medium text-[#0F172A]">{t.dashboard.quickActionClients || 'Manage Clients'}</h3>
-            <p className="text-sm text-[#64748B] mt-1">{t.dashboard.quickActionClientsDesc || 'View your clients'}</p>
+            <div className="p-3 bg-color-warning-light rounded-md mb-4 group-hover:bg-color-warning transition-colors duration-200 w-fit">
+              <Building2 size={24} className="text-color-warning" />
+            </div>
+            <h3 className="font-semibold text-lg text-text-primary">{t.dashboard.quickActionClients || 'Manage Clients'}</h3>
+            <p className="text-base text-text-secondary mt-2">{t.dashboard.quickActionClientsDesc || 'View your clients'}</p>
           </button>
         </div>
       </div>
 
       {/* AI Magic Upload Zone */}
-      <Card className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
-        <h2 className="text-xl font-semibold text-[#0F172A] mb-6">{t.dashboard.upload.title}</h2>
+      <Card className="p-10 bg-white border border-color-border-secondary rounded-lg shadow-sm">
+        <h2 className="text-2xl font-bold text-text-primary mb-8">{t.dashboard.upload.title}</h2>
 
         <motion.div
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           animate={{
-            borderColor: isDragging ? '#10B981' : isProcessing ? '#3B82F6' : '#E5E7EB',
-            backgroundColor: isDragging ? '#F0FDF4' : isProcessing ? '#EFF6FF' : '#F8FAFC',
+            borderColor: isDragging ? 'var(--color-success)' : isProcessing ? 'var(--color-primary)' : 'var(--color-border-secondary)',
+            backgroundColor: isDragging ? 'var(--color-success-bg)' : isProcessing ? 'var(--color-primary-light)' : 'var(--color-bg-subtle)',
           }}
           className={`
-            border-2 border-dashed rounded-xl p-12 
+            border-2 border-dashed rounded-lg p-16
             flex flex-col items-center justify-center
-            transition-all cursor-pointer hover:border-[#10B981] hover:bg-[#F0FDF4]
+            transition-all cursor-pointer hover:border-color-success hover:bg-color-success-bg
           `}
         >
           {isProcessing ? (
@@ -191,23 +199,23 @@ export function Dashboard() {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-                className="w-16 h-16 border-4 border-[#3B82F6] border-t-transparent rounded-full"
+                className="w-16 h-16 border-4 border-color-primary border-t-transparent rounded-full"
               />
-              <p className="mt-4 text-lg font-medium text-[#0F172A]">{t.dashboard.upload.processing}</p>
-              <p className="text-sm text-[#64748B] mt-2">{t.dashboard.upload.extracting}</p>
+              <p className="mt-6 text-lg font-semibold text-text-primary">{t.dashboard.upload.processing}</p>
+              <p className="text-base text-text-secondary mt-3">{t.dashboard.upload.extracting}</p>
             </motion.div>
           ) : (
             <>
-              <div className="w-16 h-16 bg-[#10B981] bg-opacity-10 rounded-full flex items-center justify-center mb-4">
-                <Upload size={32} className="text-[#10B981]" />
+              <div className="w-20 h-20 bg-color-success-bg rounded-lg flex items-center justify-center mb-6">
+                <Upload size={40} className="text-color-success" />
               </div>
-              <h3 className="text-lg font-medium text-[#0F172A] mb-2">
+              <h3 className="text-2xl font-semibold text-text-primary mb-3">
                 {t.dashboard.upload.dragDrop}
               </h3>
-              <p className="text-[#64748B] text-center max-w-md">
+              <p className="text-text-secondary text-center max-w-md text-base leading-relaxed mb-8">
                 {t.dashboard.upload.description}
               </p>
-              <button className="mt-6 px-6 py-2 bg-[#10B981] text-white rounded-lg hover:bg-[#059669] transition-colors">
+              <button className="px-8 py-3 bg-color-success text-white rounded-md hover:opacity-90 transition-opacity duration-200 font-medium">
                 {t.dashboard.upload.browse}
               </button>
             </>
@@ -216,35 +224,35 @@ export function Dashboard() {
       </Card>
 
       {/* Recent Activity */}
-      <Card className="p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
-        <h2 className="text-xl font-semibold text-[#0F172A] mb-6">{t.dashboard.recentActivity.title}</h2>
+      <Card className="p-8 bg-white border border-color-border-secondary rounded-lg shadow-sm">
+        <h2 className="text-2xl font-bold text-text-primary mb-8">{t.dashboard.recentActivity.title}</h2>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {recentActivity.map((item) => (
             <div
               key={item.id}
-              className="flex items-center justify-between p-4 bg-[#F8FAFC] rounded-lg hover:bg-[#F1F5F9] transition-colors"
+              className="flex items-center justify-between p-5 bg-white hover:bg-color-bg-subtle rounded-lg transition-colors duration-150 border border-color-border-subtle"
             >
               <div className="flex items-center gap-4 flex-1">
                 {item.status === 'processed' ? (
-                  <CheckCircle size={20} className="text-[#10B981]" />
+                  <CheckCircle size={22} className="text-color-success flex-shrink-0" />
                 ) : (
-                  <Clock size={20} className="text-orange-500" />
+                  <Clock size={22} className="text-color-warning flex-shrink-0" />
                 )}
 
                 <div>
-                  <p className="font-medium text-[#0F172A]">{item.supplier}</p>
-                  <p className="text-sm text-[#64748B]">{item.date}</p>
+                  <p className="font-medium text-text-primary">{item.supplier}</p>
+                  <p className="text-sm text-text-tertiary">{item.date}</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-6">
-                <span className="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-[#64748B]">
+              <div className="flex items-center gap-8">
+                <span className="px-4 py-2 bg-color-bg-secondary border border-color-border-secondary rounded-md text-sm font-medium text-text-secondary">
                   {item.category}
                 </span>
                 <div className="text-right">
-                  <p className="font-semibold text-[#0F172A]">{item.amount} MAD</p>
-                  <p className={`text-xs ${item.status === 'processed' ? 'text-[#10B981]' : 'text-orange-500'}`}>
+                  <p className="font-semibold text-text-primary">{item.amount} MAD</p>
+                  <p className={`text-xs font-medium ${item.status === 'processed' ? 'text-color-success' : 'text-color-warning'}`}>
                     {item.status === 'processed' ? t.dashboard.recentActivity.processed : t.dashboard.recentActivity.pending}
                   </p>
                 </div>
