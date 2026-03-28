@@ -34,9 +34,9 @@ export function Layout() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       {/* Sidebar */}
-      <aside className="w-64 bg-[#0F172A] text-white flex flex-col fixed h-full">
+      <aside className="w-64 bg-[#0F172A] text-white flex flex-col fixed h-full left-0 rtl:left-auto rtl:right-0">
         <div className="p-6 border-b border-[#1E293B]">
           <h1 className="text-xl font-semibold">{t.appName}</h1>
           <p className="text-xs text-[#64748B] mt-1">{t.appTagline}</p>
@@ -74,7 +74,7 @@ export function Layout() {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 ml-64">
+      <div className="flex-1 ml-64 rtl:ml-0 rtl:mr-64">
         {/* Top Header */}
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-10">
           <div className="flex-1 max-w-xl">
@@ -116,6 +116,19 @@ export function Layout() {
                   }`}
               >
                 FR
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setLanguage('ar')}
+                aria-label="Switch to Arabic"
+                aria-pressed={language === 'ar'}
+                className={`h-8 px-3 ${language === 'ar'
+                    ? 'bg-white text-[#0F172A] shadow-sm'
+                    : 'text-[#64748B] hover:text-[#0F172A]'
+                  }`}
+              >
+                AR
               </Button>
             </div>
 
