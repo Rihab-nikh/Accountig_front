@@ -1,5 +1,5 @@
-import { Card } from '../components/ui/card';
-import { TrendingUp, FileText, DollarSign, Upload, Clock, CheckCircle, Settings, Building2 } from 'lucide-react';
+﻿import { Card } from '../components/ui/card';
+import { TrendingUp, FileText, DollarSign, Upload, Clock, CheckCircle, Settings, Building2, BarChart3, PieChart } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -21,6 +21,7 @@ export function Dashboard() {
       icon: DollarSign,
       color: 'bg-sky-600',
       action: 'reports',
+      priority: 'primary',
     },
     {
       title: t.dashboard.kpis.pendingInvoices,
@@ -31,6 +32,7 @@ export function Dashboard() {
       icon: FileText,
       color: 'bg-sky-600',
       action: 'inbox',
+      priority: 'primary',
     },
     {
       title: t.dashboard.kpis.vatRecovery,
@@ -41,6 +43,7 @@ export function Dashboard() {
       icon: TrendingUp,
       color: 'bg-sky-600',
       action: 'reports',
+      priority: 'secondary',
     },
   ];
 
@@ -73,194 +76,230 @@ export function Dashboard() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Page Header */}
-      <div className="pt-2">
-        <h1 className="text-5xl font-bold text-text-primary leading-tight">{t.dashboard.title}</h1>
-        <p className="text-lg text-text-secondary mt-4">{t.dashboard.subtitle}</p>
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            {t.dashboard.title}
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">
+            {t.dashboard.subtitle}
+          </p>
+        </div>
+        <div className="flex gap-3">
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate('/inbox')}
+            className="flex items-center gap-2 bg-sky-600 text-white px-4 py-2 rounded-lg hover:bg-sky-700 transition-colors"
+          >
+            <Upload className="w-4 h-4" />
+            {t.dashboard.uploadInvoice}
+          </motion.button>
+        </div>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {kpis.map((kpi, index) => {
-          const Icon = kpi.icon;
-          const handleKpiClick = () => {
-            if (kpi.action === 'inbox') {
-              navigate('/accountant/inbox');
-            } else if (kpi.action === 'reports') {
-              navigate('/accountant/reports');
-            }
-          };
-
-          return (
-            <button
-              key={index}
-              onClick={handleKpiClick}
-              className="text-left hover:shadow-lg rounded-lg transition-all duration-200 focus-ring group"
-            >
-              <Card
-                className="p-8 bg-white border border-color-border-secondary rounded-lg shadow-sm hover:shadow-lg hover:border-color-border-primary transition-all duration-200 cursor-pointer"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <p className="text-sm text-text-tertiary font-medium mb-3 uppercase tracking-wide">{kpi.title}</p>
-                    <div className="flex items-baseline gap-3">
-                      <h3 className="text-4xl font-bold text-text-primary">{kpi.value}</h3>
-                      <span className="text-base text-text-secondary font-medium">{kpi.unit}</span>
-                    </div>
-                    <p className={`text-sm font-medium mt-4 ${kpi.trendUp ? 'text-color-success' : 'text-text-secondary'}`}>
-                      {kpi.trend}
-                    </p>
-                  </div>
-                  <div className={`${kpi.color} p-4 rounded-lg group-hover:shadow-md transition-shadow duration-200`}>
-                    <Icon size={28} className="text-white" />
-                  </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {kpis.map((kpi, index) => (
+          <motion.div
+            key={kpi.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className={`p-6 rounded-xl border bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow cursor-pointer ${
+              kpi.priority === 'primary' ? 'md:col-span-1' : ''
+            }`}
+            onClick={() => navigate(`/${kpi.action}`)}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-lg ${kpi.color}`}>
+                  <kpi.icon className="w-5 h-5 text-white" />
                 </div>
-              </Card>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Quick Actions */}
-      <div>
-        <h2 className="text-2xl font-bold text-text-primary mb-8">{t.dashboard.quickActions || 'Quick Actions'}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <button
-            onClick={() => navigate('/accountant/inbox')}
-            className="p-6 bg-white border border-color-border-secondary rounded-lg hover:shadow-md hover:border-color-border-primary transition-all duration-200 text-left focus-ring group"
-          >
-            <div className="p-3 bg-color-primary-light rounded-md mb-4 group-hover:bg-color-primary transition-colors duration-200 w-fit">
-              <FileText size={24} className="text-color-primary" />
-            </div>
-            <h3 className="font-semibold text-lg text-text-primary">{t.dashboard.quickActionReview || 'Review Invoices'}</h3>
-            <p className="text-base text-text-secondary mt-2">{t.dashboard.quickActionReviewDesc || 'Check pending invoices'}</p>
-          </button>
-
-          <button
-            onClick={() => navigate('/accountant/reports')}
-            className="p-6 bg-white border border-color-border-secondary rounded-lg hover:shadow-md hover:border-color-border-primary transition-all duration-200 text-left focus-ring group"
-          >
-            <div className="p-3 bg-color-success-light rounded-md mb-4 group-hover:bg-color-success transition-colors duration-200 w-fit">
-              <TrendingUp size={24} className="text-color-success" />
-            </div>
-            <h3 className="font-semibold text-lg text-text-primary">{t.dashboard.quickActionReports || 'View Reports'}</h3>
-            <p className="text-base text-text-secondary mt-2">{t.dashboard.quickActionReportsDesc || 'Generate financial reports'}</p>
-          </button>
-
-          <button
-            onClick={() => navigate('/accountant/settings')}
-            className="p-6 bg-white border border-color-border-secondary rounded-lg hover:shadow-md hover:border-color-border-primary transition-all duration-200 text-left focus-ring group"
-          >
-            <div className="p-3 bg-color-secondary-light rounded-md mb-4 group-hover:bg-color-secondary transition-colors duration-200 w-fit">
-              <Settings size={24} className="text-color-secondary" />
-            </div>
-            <h3 className="font-semibold text-lg text-text-primary">{t.dashboard.quickActionSettings || 'Settings'}</h3>
-            <p className="text-base text-text-secondary mt-2">{t.dashboard.quickActionSettingsDesc || 'Manage your account'}</p>
-          </button>
-
-          <button
-            onClick={() => navigate('/accountant/clients')}
-            className="p-6 bg-white border border-color-border-secondary rounded-lg hover:shadow-md hover:border-color-border-primary transition-all duration-200 text-left focus-ring group"
-          >
-            <div className="p-3 bg-color-warning-light rounded-md mb-4 group-hover:bg-color-warning transition-colors duration-200 w-fit">
-              <Building2 size={24} className="text-color-warning" />
-            </div>
-            <h3 className="font-semibold text-lg text-text-primary">{t.dashboard.quickActionClients || 'Manage Clients'}</h3>
-            <p className="text-base text-text-secondary mt-2">{t.dashboard.quickActionClientsDesc || 'View your clients'}</p>
-          </button>
-        </div>
-      </div>
-
-      {/* AI Magic Upload Zone */}
-      <Card className="p-10 bg-white border border-color-border-secondary rounded-lg shadow-sm">
-        <h2 className="text-2xl font-bold text-text-primary mb-8">{t.dashboard.upload.title}</h2>
-
-        <motion.div
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          animate={{
-            borderColor: isDragging ? 'var(--color-success)' : isProcessing ? 'var(--color-primary)' : 'var(--color-border-secondary)',
-            backgroundColor: isDragging ? 'var(--color-success-bg)' : isProcessing ? 'var(--color-primary-light)' : 'var(--color-bg-subtle)',
-          }}
-          className={`
-            border-2 border-dashed rounded-lg p-16
-            flex flex-col items-center justify-center
-            transition-all cursor-pointer hover:border-color-success hover:bg-color-success-bg
-          `}
-        >
-          {isProcessing ? (
-            <motion.div
-              className="flex flex-col items-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-                className="w-16 h-16 border-4 border-color-primary border-t-transparent rounded-full"
-              />
-              <p className="mt-6 text-lg font-semibold text-text-primary">{t.dashboard.upload.processing}</p>
-              <p className="text-base text-text-secondary mt-3">{t.dashboard.upload.extracting}</p>
-            </motion.div>
-          ) : (
-            <>
-              <div className="w-20 h-20 bg-color-success-bg rounded-lg flex items-center justify-center mb-6">
-                <Upload size={40} className="text-color-success" />
-              </div>
-              <h3 className="text-2xl font-semibold text-text-primary mb-3">
-                {t.dashboard.upload.dragDrop}
-              </h3>
-              <p className="text-text-secondary text-center max-w-md text-base leading-relaxed mb-8">
-                {t.dashboard.upload.description}
-              </p>
-              <button className="px-8 py-3 bg-color-success text-white rounded-md hover:opacity-90 transition-opacity duration-200 font-medium">
-                {t.dashboard.upload.browse}
-              </button>
-            </>
-          )}
-        </motion.div>
-      </Card>
-
-      {/* Recent Activity */}
-      <Card className="p-8 bg-white border border-color-border-secondary rounded-lg shadow-sm">
-        <h2 className="text-2xl font-bold text-text-primary mb-8">{t.dashboard.recentActivity.title}</h2>
-
-        <div className="space-y-3">
-          {recentActivity.map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center justify-between p-5 bg-white hover:bg-color-bg-subtle rounded-lg transition-colors duration-150 border border-color-border-subtle"
-            >
-              <div className="flex items-center gap-4 flex-1">
-                {item.status === 'processed' ? (
-                  <CheckCircle size={22} className="text-color-success flex-shrink-0" />
-                ) : (
-                  <Clock size={22} className="text-color-warning flex-shrink-0" />
-                )}
-
                 <div>
-                  <p className="font-medium text-text-primary">{item.supplier}</p>
-                  <p className="text-sm text-text-tertiary">{item.date}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-8">
-                <span className="px-4 py-2 bg-color-bg-secondary border border-color-border-secondary rounded-md text-sm font-medium text-text-secondary">
-                  {item.category}
-                </span>
-                <div className="text-right">
-                  <p className="font-semibold text-text-primary">{item.amount} MAD</p>
-                  <p className={`text-xs font-medium ${item.status === 'processed' ? 'text-color-success' : 'text-color-warning'}`}>
-                    {item.status === 'processed' ? t.dashboard.recentActivity.processed : t.dashboard.recentActivity.pending}
+                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                    {kpi.title}
+                  </p>
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {kpi.value} {kpi.unit}
                   </p>
                 </div>
               </div>
+              <div className={`text-sm font-medium ${
+                kpi.trendUp ? 'text-green-600' : 'text-red-600'
+              }`}>
+                {kpi.trend}
+              </div>
             </div>
-          ))}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Charts Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <BarChart3 className="w-5 h-5 text-sky-600" />
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              {t.dashboard.charts.monthlySpend}
+            </h3>
+          </div>
+          <div className="h-64 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div className="text-center text-gray-500 dark:text-gray-400">
+              <BarChart3 className="w-12 h-12 mx-auto mb-2 opacity-50" />
+              <p>{t.dashboard.charts.chartPlaceholder}</p>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <PieChart className="w-5 h-5 text-sky-600" />
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              {t.dashboard.charts.expenseBreakdown}
+            </h3>
+          </div>
+          <div className="h-64 flex items-center justify-center bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <div className="text-center text-gray-500 dark:text-gray-400">
+              <PieChart className="w-12 h-12 mx-auto mb-2 opacity-50" />
+              <p>{t.dashboard.charts.chartPlaceholder}</p>
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      {/* Recent Activity & Quick Actions */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Recent Activity */}
+        <div className="lg:col-span-2">
+          <Card className="p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Clock className="w-5 h-5 text-sky-600" />
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t.dashboard.recentActivity}
+              </h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                    <th className="text-left py-2 px-4 font-medium text-gray-600 dark:text-gray-400">
+                      {t.dashboard.table.supplier}
+                    </th>
+                    <th className="text-left py-2 px-4 font-medium text-gray-600 dark:text-gray-400">
+                      {t.dashboard.table.amount}
+                    </th>
+                    <th className="text-left py-2 px-4 font-medium text-gray-600 dark:text-gray-400">
+                      {t.dashboard.table.date}
+                    </th>
+                    <th className="text-left py-2 px-4 font-medium text-gray-600 dark:text-gray-400">
+                      {t.dashboard.table.status}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {recentActivity.map((activity) => (
+                    <tr key={activity.id} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-2">
+                          <Building2 className="w-4 h-4 text-gray-400" />
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {activity.supplier}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 text-gray-900 dark:text-white font-medium">
+                        {activity.amount} MAD
+                      </td>
+                      <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                        {activity.date}
+                      </td>
+                      <td className="py-3 px-4">
+                        <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
+                          activity.status === 'processed'
+                            ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
+                            : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
+                        }`}>
+                          {activity.status === 'processed' ? (
+                            <CheckCircle className="w-3 h-3" />
+                          ) : (
+                            <Clock className="w-3 h-3" />
+                          )}
+                          {activity.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
         </div>
-      </Card>
+
+        {/* Quick Actions */}
+        <div>
+          <Card className="p-6">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              {t.dashboard.quickActions}
+            </h3>
+            <div className="space-y-3">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => navigate('/inbox')}
+                className="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors text-left"
+              >
+                <Upload className="w-5 h-5 text-sky-600" />
+                <div>
+                  <p className="font-medium text-gray-900 dark:text-white">
+                    {t.dashboard.uploadInvoice}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {t.dashboard.uploadDescription}
+                  </p>
+                </div>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => navigate('/reports')}
+                className="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors text-left"
+              >
+                <FileText className="w-5 h-5 text-sky-600" />
+                <div>
+                  <p className="font-medium text-gray-900 dark:text-white">
+                    {t.dashboard.viewReports}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {t.dashboard.reportsDescription}
+                  </p>
+                </div>
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => navigate('/settings')}
+                className="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors text-left"
+              >
+                <Settings className="w-5 h-5 text-sky-600" />
+                <div>
+                  <p className="font-medium text-gray-900 dark:text-white">
+                    {t.dashboard.settings}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {t.dashboard.settingsDescription}
+                  </p>
+                </div>
+              </motion.button>
+            </div>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
+

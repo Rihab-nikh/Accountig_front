@@ -8,6 +8,7 @@ const baseTranslations = {
     nav: {
       dashboard: 'Dashboard',
       invoiceInbox: 'Invoice Inbox',
+      outbox: 'Outbox',
       suppliers: 'Suppliers',
       reports: 'Reports',
       settings: 'Settings',
@@ -319,6 +320,7 @@ const baseTranslations = {
     nav: {
       dashboard: 'Tableau de bord',
       invoiceInbox: 'Boîte de réception',
+      outbox: 'Boîte d\'envoie',
       suppliers: 'Fournisseurs',
       reports: 'Rapports',
       settings: 'Paramètres',

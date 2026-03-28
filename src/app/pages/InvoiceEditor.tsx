@@ -127,24 +127,38 @@ export function InvoiceEditor() {
           <h2 className="text-lg font-semibold text-[#0F172A] mb-4">{t.invoiceEditor.form.title}</h2>
           
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="supplier">{t.invoiceEditor.form.supplier}</Label>
+            <div className="space-y-3">
+              <Label htmlFor="supplier" className="text-gray-900 font-semibold text-sm">
+                {t.invoiceEditor.form.supplier}
+              </Label>
               <Input
                 id="supplier"
                 value={formData.supplier}
                 onChange={(e) => handleChange('supplier', e.target.value)}
-                className="bg-[#F8FAFC]"
+                className="bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-sky-500 focus:ring-sky-500"
+                placeholder="Enter supplier name"
+                aria-describedby="supplier-help"
               />
+              <p id="supplier-help" className="text-xs text-gray-600 mt-1">
+                Full legal name of the supplier or vendor
+              </p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="ice">{t.invoiceEditor.form.ice}</Label>
+            <div className="space-y-3">
+              <Label htmlFor="ice" className="text-gray-900 font-semibold text-sm">
+                {t.invoiceEditor.form.ice}
+              </Label>
               <Input
                 id="ice"
                 value={formData.ice}
                 onChange={(e) => handleChange('ice', e.target.value)}
-                className="bg-[#F8FAFC] font-mono text-sm"
+                className="bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-sky-500 focus:ring-sky-500 font-mono"
+                placeholder="123456789012345"
+                aria-describedby="ice-help"
               />
+              <p id="ice-help" className="text-xs text-gray-600 mt-1">
+                15-digit ICE (Identifiant Commun de l'Entreprise) number
+              </p>
             </div>
 
             <div className="space-y-2">
