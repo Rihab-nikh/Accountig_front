@@ -13,6 +13,7 @@ import {
     ChevronRight,
     Menu,
     X,
+    Plug,
 } from 'lucide-react';
 import { Input } from '../ui/input';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -68,6 +69,7 @@ export function AccountantLayout() {
         { path: '/accountant/inbox', label: t.nav.invoiceInbox, icon: Inbox },
         { path: '/accountant/outbox', label: t.nav.outbox, icon: FolderOpen },
         { path: '/accountant/clients', label: t.nav.clients, icon: Building2 },
+        { path: '/accountant/integrations', label: t.nav.integrations, icon: Plug },
         { path: '/accountant/bank', label: t.nav.bank, icon: BarChart3 },
         { path: '/accountant/settings', label: t.nav.settings, icon: Settings },
     ];

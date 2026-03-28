@@ -16,6 +16,7 @@ const baseTranslations = {
       clients: 'Clients',
       documents: 'Documents',
       bank: 'Bank',
+      integrations: 'Integrations',
       adminPanel: 'Admin Panel',
     },
 
@@ -328,6 +329,7 @@ const baseTranslations = {
       clients: 'Clients',
       documents: 'Documents',
       bank: 'Banque',
+      integrations: 'Intégrations',
       adminPanel: 'Panneau Admin',
     },
 

@@ -14,6 +14,11 @@ import { AdminSettings } from './pages/admin/Settings';
 // Accountant Pages
 import { AccountantDashboard } from './pages/accountant/AccountantDashboard';
 import { AccountantClientsPage } from './pages/accountant/ClientsPage';
+import { AccountantInboxPage } from './pages/accountant/AccountantInboxPage';
+import { AccountantOutboxPage } from './pages/accountant/AccountantOutboxPage';
+import { AccountantBankPage } from './pages/accountant/AccountantBankPage';
+import { IntegrationsPage } from './pages/accountant/IntegrationsPage';
+import { OAuthCallbackPage } from './pages/accountant/OAuthCallbackPage';
 
 // Client Pages
 import { ClientInvoicesPage } from './pages/client/ClientInvoicesPage';
@@ -72,6 +77,12 @@ export const router = createBrowserRouter([
     ],
   },
 
+  // ==== OAUTH CALLBACK ====
+  {
+    path: '/integrations/oauth/callback',
+    Component: OAuthCallbackPage,
+  },
+
   // ==== ACCOUNTANT ROUTES ====
   {
     path: '/accountant',
@@ -83,6 +94,10 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: AccountantDashboard },
       { path: 'clients', Component: AccountantClientsPage },
+      { path: 'inbox', Component: AccountantInboxPage },
+      { path: 'outbox', Component: AccountantOutboxPage },
+      { path: 'bank', Component: AccountantBankPage },
+      { path: 'integrations', Component: IntegrationsPage },
       { path: 'settings', Component: Settings },
       {
         path: 'clients/:clientId',
