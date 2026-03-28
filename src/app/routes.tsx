@@ -79,6 +79,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: AccountantDashboard },
       { path: 'clients', Component: AccountantClientsPage },
+      { path: 'settings', Component: Settings },
       {
         path: 'clients/:clientId',
         children: [
