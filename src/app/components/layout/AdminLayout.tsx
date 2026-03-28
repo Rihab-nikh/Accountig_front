@@ -15,6 +15,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../ui/button';
 import { useState, useMemo } from 'react';
+import { UserMenu } from '../UserMenu';
 
 export function AdminLayout() {
     const location = useLocation();
@@ -35,6 +36,9 @@ export function AdminLayout() {
         }
         return location.pathname.startsWith(path);
     };
+
+    // Check if current page should show search bar
+    const showSearchBar = !location.pathname.endsWith('/settings');
 
     // Generate breadcrumbs from current path
     const breadcrumbs = useMemo(() => {
@@ -103,19 +107,26 @@ export function AdminLayout() {
             <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'}`}>
                 {/* Top Header */}
                 <header className="h-16 bg-background-secondary border-b border-border flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm">
-                    <div className="flex-1 max-w-xl">
-                        <div className="relative">
-                            <Search
-                                className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary"
-                                size={20}
-                            />
-                            <Input
-                                type="text"
-                                placeholder={t.header.searchPlaceholder}
-                                className="pl-10 bg-background-primary border-border text-text-primary placeholder:text-text-tertiary"
-                            />
+                    {showSearchBar ? (
+                        <div className="flex-1 max-w-xl">
+                            <div className="relative">
+                                <Search
+                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary"
+                                    size={20}
+                                />
+                                <Input
+                                    type="text"
+                                    placeholder={t.header.searchPlaceholder}
+                                    className="pl-10 bg-background-primary border-border text-text-primary placeholder:text-text-tertiary"
+                                    aria-label="Search"
+                                />
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <h2 className="text-lg font-semibold text-text-primary">
+                            {navItems.find(item => isActive(item.path))?.label}
+                        </h2>
+                    )}
 
                     <div className="flex items-center gap-4">
                         {/* Language Switcher */}
@@ -160,16 +171,8 @@ export function AdminLayout() {
                             <Bell size={20} />
                         </button>
 
-                        {/* Logout */}
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={logout}
-                            className="gap-2 text-text-secondary hover:text-error"
-                        >
-                            <LogOut size={18} />
-                            {t.header.logout}
-                        </Button>
+                        {/* User Menu */}
+                        <UserMenu />
                     </div>
                 </header>
 

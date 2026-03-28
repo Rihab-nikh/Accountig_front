@@ -12,6 +12,8 @@ import {
     ChevronDown,
     ChevronLeft,
     ChevronRight,
+    Menu,
+    X,
 } from 'lucide-react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
@@ -19,6 +21,8 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useClient } from '../../contexts/ClientContext';
 import { useEffect, useState, useMemo } from 'react';
+import { useIsMobile } from '../ui/use-mobile';
+import { UserMenu } from '../UserMenu';
 import { getClients } from '../../services/mockData';
 
 export function AccountantLayout() {
@@ -26,9 +30,17 @@ export function AccountantLayout() {
     const { language, setLanguage, t } = useLanguage();
     const { user, logout } = useAuth();
     const { currentClient, setCurrentClient, clients, setClients } = useClient();
+    const isMobile = useIsMobile();
     const [isClientDropdownOpen, setIsClientDropdownOpen] = useState(false);
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
 
+    // Auto-collapse sidebar on mobile, auto-expand on desktop
+    useEffect(() => {
+        setSidebarOpen(!isMobile);
+    }, [isMobile]);
+
+    // Load clients for the accountant
     useEffect(() => {
         if (!user?.accountantId || clients.length > 0) {
             return;
@@ -89,6 +101,11 @@ export function AccountantLayout() {
         return location.pathname.startsWith(path);
     };
 
+    // Check if current page should show search bar
+    // Hide search bar on settings and other admin pages
+    const pagesWithoutSearch = ['/settings', '/admin', '/login'];
+    const showSearchBar = !pagesWithoutSearch.some(path => location.pathname.includes(path));
+
     // Generate breadcrumbs from current path
     const breadcrumbs = useMemo(() => {
         const pathParts = location.pathname.split('/').filter(Boolean);
@@ -103,8 +120,17 @@ export function AccountantLayout() {
 
     return (
         <div className="min-h-screen flex">
+            {/* Mobile sidebar overlay backdrop */}
+            {isMobile && sidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-30"
+                    onClick={() => setSidebarOpen(false)}
+                    aria-hidden="true"
+                />
+            )}
+
             {/* Sidebar */}
-            <aside className={`bg-background-primary text-text-primary flex flex-col fixed h-full z-40 border-r border-border transition-all duration-300 overflow-y-auto ${sidebarOpen ? 'w-64' : 'w-20'
+            <aside className={`bg-background-primary text-text-primary flex flex-col fixed h-full z-40 border-r border-border transition-all duration-300 overflow-y-auto ${sidebarOpen ? (isMobile ? 'w-64' : 'w-64') : (isMobile ? '-translate-x-full' : 'w-20')
                 }`}>
                 <div className={`p-6 border-b border-border flex items-center justify-between ${!sidebarOpen && 'px-4'}`}>
                     {sidebarOpen && (
@@ -189,30 +215,82 @@ export function AccountantLayout() {
                 </nav>
 
                 {sidebarOpen && (
-                    <div className="p-4 border-t border-border">
-                        <p className="text-xs text-text-tertiary truncate">
-                            {user?.name}
-                        </p>
+                    <div className="p-4 border-t border-border relative">
+                        <button
+                            onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                            className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-secondary transition-colors text-left"
+                        >
+                            <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
+                                {user?.name.charAt(0).toUpperCase()}
+                            </div>
+                            <div className="min-w-0">
+                                <p className="text-sm font-medium text-text-primary truncate">{user?.name}</p>
+                                <p className="text-xs text-text-tertiary truncate capitalize">{user?.role}</p>
+                            </div>
+                        </button>
+
+                        {/* User Menu Dropdown */}
+                        {isUserMenuOpen && (
+                            <div className="absolute bottom-full left-4 right-4 mb-2 bg-background-secondary border border-border rounded-lg shadow-lg z-20">
+                                <button
+                                    onClick={() => {
+                                        setIsUserMenuOpen(false);
+                                    }}
+                                    className="w-full flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-text-primary hover:bg-background-primary transition-colors text-sm first:rounded-t-lg"
+                                >
+                                    <Settings size={16} />
+                                    <span>Settings</span>
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        logout();
+                                        setIsUserMenuOpen(false);
+                                    }}
+                                    className="w-full flex items-center gap-3 px-4 py-2 text-error hover:bg-error-bg transition-colors text-sm last:rounded-b-lg"
+                                >
+                                    <LogOut size={16} />
+                                    <span>Log Out</span>
+                                </button>
+                            </div>
+                        )}
                     </div>
                 )}
             </aside>
 
             {/* Main Content */}
-            <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-20'}`}>
+            <div className={`flex-1 transition-all duration-300 ${!isMobile && (sidebarOpen ? 'ml-64' : 'ml-20')}`}>
                 {/* Top Header */}
                 <header className="h-16 bg-background-secondary border-b border-border flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm">
-                    <div className="flex-1 max-w-xl">
-                        <div className="relative">
-                            <Search
-                                className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary"
-                                size={20}
-                            />
-                            <Input
-                                type="text"
-                                placeholder={t.header.searchPlaceholder}
-                                className="pl-10 bg-background-primary border-border text-text-primary placeholder:text-text-tertiary"
-                            />
-                        </div>
+                    <div className="flex items-center gap-4 flex-1">
+                        {isMobile && (
+                            <button
+                                onClick={() => setSidebarOpen(!sidebarOpen)}
+                                className="p-2 hover:bg-background-primary rounded-lg transition-colors text-text-secondary hover:text-text-primary"
+                                aria-label="Toggle sidebar"
+                            >
+                                {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+                            </button>
+                        )}
+                        {showSearchBar ? (
+                            <div className="flex-1 max-w-xl">
+                                <div className="relative">
+                                    <Search
+                                        className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary"
+                                        size={20}
+                                    />
+                                    <Input
+                                        type="text"
+                                        placeholder={t.header.searchPlaceholder}
+                                        className="pl-10 bg-background-primary border-border text-text-primary placeholder:text-text-tertiary"
+                                        aria-label="Search"
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <h2 className="text-lg font-semibold text-text-primary">
+                                {navItems.find(item => isActive(item.path))?.label}
+                            </h2>
+                        )}
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -258,16 +336,8 @@ export function AccountantLayout() {
                             <Bell size={20} />
                         </button>
 
-                        {/* Logout */}
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={logout}
-                            className="gap-2 text-text-secondary hover:text-error"
-                        >
-                            <LogOut size={18} />
-                            {t.header.logout}
-                        </Button>
+                        {/* User Menu */}
+                        <UserMenu />
                     </div>
                 </header>
 

@@ -29,6 +29,8 @@ import { InvoiceEditor } from './pages/InvoiceEditor';
 import { SupplierDirectory } from './pages/SupplierDirectory';
 import { Reports } from './pages/Reports';
 import { Settings } from './pages/Settings';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { ServerErrorPage } from './pages/ServerErrorPage';
 
 function HomeRedirect() {
   const { user } = useAuth();
@@ -106,5 +108,17 @@ export const router = createBrowserRouter([
       { path: 'reports', Component: Reports },
       { path: 'settings', Component: Settings },
     ],
+  },
+
+  // ==== ERROR ROUTES ====
+  {
+    path: '/error',
+    element: <ServerErrorPage />,
+  },
+
+  // ==== CATCH-ALL 404 ====
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ]);

@@ -1,11 +1,13 @@
 import { Card } from '../components/ui/card';
-import { TrendingUp, FileText, DollarSign, Upload, Clock, CheckCircle } from 'lucide-react';
+import { TrendingUp, FileText, DollarSign, Upload, Clock, CheckCircle, Settings, Building2 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function Dashboard() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [isDragging, setIsDragging] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -18,6 +20,7 @@ export function Dashboard() {
       trendUp: true,
       icon: DollarSign,
       color: 'bg-blue-500',
+      action: 'reports',
     },
     {
       title: t.dashboard.kpis.pendingInvoices,
@@ -27,6 +30,7 @@ export function Dashboard() {
       trendUp: false,
       icon: FileText,
       color: 'bg-orange-500',
+      action: 'inbox',
     },
     {
       title: t.dashboard.kpis.vatRecovery,
@@ -36,6 +40,7 @@ export function Dashboard() {
       trendUp: true,
       icon: TrendingUp,
       color: 'bg-[#10B981]',
+      action: 'reports',
     },
   ];
 
@@ -60,7 +65,7 @@ export function Dashboard() {
     e.preventDefault();
     setIsDragging(false);
     setIsProcessing(true);
-    
+
     // Simulate processing
     setTimeout(() => {
       setIsProcessing(false);
@@ -79,35 +84,90 @@ export function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {kpis.map((kpi, index) => {
           const Icon = kpi.icon;
+          const handleKpiClick = () => {
+            if (kpi.action === 'inbox') {
+              navigate('/accountant/inbox');
+            } else if (kpi.action === 'reports') {
+              navigate('/accountant/reports');
+            }
+          };
+
           return (
-            <Card
+            <button
               key={index}
-              className="p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              onClick={handleKpiClick}
+              className="text-left hover:ring-2 hover:ring-accent rounded-xl transition-all"
             >
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-sm text-[#64748B] mb-2">{kpi.title}</p>
-                  <div className="flex items-baseline gap-2">
-                    <h3 className="text-3xl font-semibold text-[#0F172A]">{kpi.value}</h3>
-                    <span className="text-sm text-[#64748B]">{kpi.unit}</span>
+              <Card
+                className="p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-accent transition-all cursor-pointer"
+              >
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-sm text-[#64748B] mb-2">{kpi.title}</p>
+                    <div className="flex items-baseline gap-2">
+                      <h3 className="text-3xl font-semibold text-[#0F172A]">{kpi.value}</h3>
+                      <span className="text-sm text-[#64748B]">{kpi.unit}</span>
+                    </div>
+                    <p className={`text-sm mt-2 ${kpi.trendUp ? 'text-[#10B981]' : 'text-[#64748B]'}`}>
+                      {kpi.trend}
+                    </p>
                   </div>
-                  <p className={`text-sm mt-2 ${kpi.trendUp ? 'text-[#10B981]' : 'text-[#64748B]'}`}>
-                    {kpi.trend}
-                  </p>
+                  <div className={`${kpi.color} p-3 rounded-lg`}>
+                    <Icon size={24} className="text-white" />
+                  </div>
                 </div>
-                <div className={`${kpi.color} p-3 rounded-lg`}>
-                  <Icon size={24} className="text-white" />
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </button>
           );
         })}
+      </div>
+
+      {/* Quick Actions */}
+      <div>
+        <h2 className="text-xl font-semibold text-[#0F172A] mb-4">{t.dashboard.quickActions || 'Quick Actions'}</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <button
+            onClick={() => navigate('/accountant/inbox')}
+            className="p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-300 transition-all text-left"
+          >
+            <FileText size={24} className="text-blue-500 mb-2" />
+            <h3 className="font-medium text-[#0F172A]">{t.dashboard.quickActionReview || 'Review Invoices'}</h3>
+            <p className="text-sm text-[#64748B] mt-1">{t.dashboard.quickActionReviewDesc || 'Check pending invoices'}</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/accountant/reports')}
+            className="p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-green-300 transition-all text-left"
+          >
+            <TrendingUp size={24} className="text-green-500 mb-2" />
+            <h3 className="font-medium text-[#0F172A]">{t.dashboard.quickActionReports || 'View Reports'}</h3>
+            <p className="text-sm text-[#64748B] mt-1">{t.dashboard.quickActionReportsDesc || 'Generate financial reports'}</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/accountant/settings')}
+            className="p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-purple-300 transition-all text-left"
+          >
+            <Settings size={24} className="text-purple-500 mb-2" />
+            <h3 className="font-medium text-[#0F172A]">{t.dashboard.quickActionSettings || 'Settings'}</h3>
+            <p className="text-sm text-[#64748B] mt-1">{t.dashboard.quickActionSettingsDesc || 'Manage your account'}</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/accountant/clients')}
+            className="p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-orange-300 transition-all text-left"
+          >
+            <Building2 size={24} className="text-orange-500 mb-2" />
+            <h3 className="font-medium text-[#0F172A]">{t.dashboard.quickActionClients || 'Manage Clients'}</h3>
+            <p className="text-sm text-[#64748B] mt-1">{t.dashboard.quickActionClientsDesc || 'View your clients'}</p>
+          </button>
+        </div>
       </div>
 
       {/* AI Magic Upload Zone */}
       <Card className="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
         <h2 className="text-xl font-semibold text-[#0F172A] mb-6">{t.dashboard.upload.title}</h2>
-        
+
         <motion.div
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -158,7 +218,7 @@ export function Dashboard() {
       {/* Recent Activity */}
       <Card className="p-6 bg-white border border-gray-200 rounded-xl shadow-sm">
         <h2 className="text-xl font-semibold text-[#0F172A] mb-6">{t.dashboard.recentActivity.title}</h2>
-        
+
         <div className="space-y-4">
           {recentActivity.map((item) => (
             <div
@@ -171,13 +231,13 @@ export function Dashboard() {
                 ) : (
                   <Clock size={20} className="text-orange-500" />
                 )}
-                
+
                 <div>
                   <p className="font-medium text-[#0F172A]">{item.supplier}</p>
                   <p className="text-sm text-[#64748B]">{item.date}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-6">
                 <span className="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-[#64748B]">
                   {item.category}
